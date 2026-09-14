@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FisioPilates · Estrategia NBB · Centro de Comando Meta Ads</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <span class="eyebrow">Navarro Brands · Meta Ads</span>
+      <h1>FisioPilates · Centro de Comando</h1>
+      <span class="sub">Estrategia NBB <span class="strat nbb">3 campañas por audiencia · 11 sedes</span> · Conversión a WhatsApp · Bogotá</span>
+    </div>
+    <div class="winbadge">Ventana: <b id="winlabel"></b></div>
+  </header>
+  <nav class="topnav" id="topnav"></nav>
+
+  <div class="toolbar">
+    <div class="toggle" id="periodToggle"></div>
+    <div class="tabs" id="viewTabs">
+      <button data-v="overview" class="on">Panorama</button>
+      <button data-v="aud">Por audiencia</button>
+      <button data-v="sedes">Por sede</button>
+      <button data-v="ads">Por anuncio</button>
+    </div>
+  </div>
+  <p class="note" id="scopeNote"></p>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div id="trendStrip" style="background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:26px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+      <div id="trendTitle" style="font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--nbb)">Tendencia semanal</div>
+      <div class="trendHint" style="font-family:var(--mono);font-size:9px;color:var(--faint)">desliza →</div>
+    </div>
+    <div id="trendScroll"><div id="trendBars"></div></div>
+  </div>
+
+  <div id="view-overview">
+    <h2 class="sec">Audiencias <span class="cnt" id="audCnt"></span></h2>
+    <div class="grid" id="audSummary"></div>
+    <h2 class="sec">Alertas por conjunto (sede × audiencia) <span class="cnt" id="alertCnt"></span></h2>
+    <div class="tblwrap"><table class="t" id="setTable"></table></div>
+    <p class="tblnote">Semáforo por conjunto de anuncios: costo por conversación frente al promedio NBB del período, frecuencia y volumen. Las señales de calidad de Meta aún no están disponibles para estos anuncios (ranking «-»).</p>
+  </div>
+
+  <div id="view-aud" class="hidden">
+    <h2 class="sec">Rendimiento por audiencia <span class="cnt">3 campañas · una por perfil de paciente</span></h2>
+    <div class="grid" id="audCards"></div>
+  </div>
+
+  <div id="view-sedes" class="hidden">
+    <h2 class="sec">Selecciona una sede</h2>
+    <div class="sede-list" id="sedeList"></div>
+    <div id="sedeDetail"></div>
+  </div>
+
+  <div id="view-ads" class="hidden">
+    <h2 class="sec">Rendimiento por anuncio <span class="cnt" id="adCnt"></span></h2>
+    <div class="grid" id="adCards"></div>
+  </div>
+
+  <div class="comments" id="comments"></div>
+
+  <footer>
+    <span>Fuente: export Meta Ads Manager · Alcance deduplicado por Meta (no sumable) · Alcance por audiencia/sede/anuncio aprox. · Conversaciones = «Conversaciones con mensajes iniciadas» · Moneda: COP</span>
+    <span id="genstamp"></span>
+  </footer>
+</div>
+
+<script src="assets/data.js"></script>
+<script src="assets/common.js"></script>
+<script>
+const S = DATA.nbb;
+const AUD = Object.fromEntries(DATA.audiences.map(a => [a.key, a]));
+let CUR = DATA.cur;
+const shown = DATA.periods_shown.filter(id => S.periods[id]);
+
+function renderKPIs() {
+  const d = S.periods[CUR], t = d.totals, prev = d.prev ? d.prev.totals : null;
+  document.getElementById('kpis').innerHTML = kpiHTML(standardKPIs(t, prev, t.campaigns + ' campañas · ' + t.sets + ' conjuntos · ' + t.ads + ' anuncios'), 'nbb');
+  document.getElementById('winlabel').textContent = d.start + ' → ' + d.end;
+  let scope;
+  if (CUR === 'acc') {
+    scope = `Acumulado de ${d.weeks} semana(s) de la estrategia NBB (desde el ${fmtDate(S.start)}). `;
+    if (t.reach != null && d.weeks > 1) scope += `El alcance es deduplicado por Meta: ${COP(t.reach)} personas únicas, menor que la suma de las semanas (${COP(d.reach_weekly_sum)}). `;
+  } else {
+    scope = `Semana del ${d.label}` + (d.prev ? `, comparada contra la semana previa (${d.prev.label}). ` : ' — primera semana de la estrategia, sin semana previa comparable. ');
+  }
+  document.getElementById('scopeNote').textContent = scope + 'Todas las conversaciones son «Conversaciones con mensajes iniciadas» (WhatsApp). Cifras en COP. El alcance por audiencia/sede/anuncio es aproximado.';
+}
+
+function miniList(title, rows, nameFn, opts) {
+  opts = opts || {};
+  const max = Math.max(...rows.map(r => r.conv), 1);
+  return `<div class="mini"><div class="bh"><span>${title}</span><span>conv · c/conv</span></div>` +
+    rows.map(r => `<div class="r"><div class="n">${esc(nameFn(r))}</div><div class="c">${r.conv}</div><div class="k">${r.conv ? money(r.cpconv) : '—'}</div></div>`).join('') + `</div>`;
+}
+
+function audCardHTML(a, full) {
+  const d = S.periods[CUR];
+  const prev = d.prev ? d.prev.audiences[a.audience] : null;
+  const share = d.totals.spend ? (a.spend / d.totals.spend * 100).toFixed(0) : 0;
+  const convShare = d.totals.conv ? (a.conv / d.totals.conv * 100).toFixed(0) : 0;
+  const fpct = Math.min(a.freq / 2.5 * 100, 100);
+  const bySede = [...a.by_sede].sort((x, y) => (x.conv ? x.cpconv : 1e12) - (y.conv ? y.cpconv : 1e12));
+  return `<div class="aud">
+    <div class="top" style="display:flex;justify-content:space-between;gap:10px;margin-bottom:12px">
+      <div><div class="acct" style="font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--faint);margin-bottom:3px">Audiencia · ${a.age} años</div><div class="cname">${esc(a.name)}</div></div>
+      <div class="badges"><span class="pill ${a._level}">${levelText(a._level)}</span><span class="pill n">${share}% INV · ${convShare}% CONV</span></div>
+    </div>
+    <div class="hero-metric"><span class="big">${a.conv}</span><span class="cap">conversaciones<br>WhatsApp</span>
+    <span class="cost"><b>${a.conv ? money(a.cpconv) : '—'}</b><span>por conversación</span></span></div>
+    ${cmpRow(a, prev)}
+    <div class="stats">
+      <div class="stat"><div class="k">Inversión</div><div class="v">${money(a.spend)}</div></div>
+      <div class="stat"><div class="k">CTR</div><div class="v">${a.ctr}%</div></div>
+      <div class="stat"><div class="k">CPC</div><div class="v">${money(a.cpc)}</div></div>
+      <div class="stat"><div class="k">Alcance</div><div class="v">${COP(a.reach)}<span class="ap">aprox.</span></div></div>
+      <div class="stat"><div class="k">Impres.</div><div class="v">${COP(a.imp)}</div></div>
+      <div class="stat"><div class="k">Clics</div><div class="v">${a.clicks}</div></div>
+    </div>
+    <div class="freqrow"><div class="flabel"><span>Frecuencia (aprox.)</span><span>${a.freq}</span></div>
+    <div class="fbar"><i style="width:${fpct}%;background:${freqColor(a.freq)}"></i></div></div>
+    ${miniList('Anuncios', a.by_ad, r => r.ad.replace(/^NBB \| /, ''))}
+    ${full ? miniList('Sedes · mejor a peor costo', bySede, r => r.sede)
+           : `<details class="more"><summary>Ver desglose por sede (${a.by_sede.length})</summary>${miniList('Sedes · mejor a peor costo', bySede, r => r.sede)}</details>`}
+  </div>`;
+}
+
+function sedeCard(s) {
+  const d = S.periods[CUR];
+  const prev = d.prev ? d.prev.sedes[s.sede] : null;
+  const byAud = [...s.by_audience].sort((x, y) => (x.conv ? x.cpconv : 1e12) - (y.conv ? y.cpconv : 1e12));
+  return unitCardHTML(s, {
+    eyebrow: 'FisioPilates · sede · estrategia NBB', title: s.sede, variant: 'nbb', prev, hideSets: true, unitWord: 'esta sede',
+    badge: `<span class="pill a">${s.sets} AUDIENCIAS</span>`,
+    extra: miniList('Audiencias · mejor a peor costo', byAud, r => r.name),
+  });
+}
+
+function renderSetTable(sets) {
+  const rows = sets.map(s => `<tr>
+    <td class="nm"><span class="sem ${s._level}"></span>${esc(s.sede)}<small>${esc(s.name)} · ${s.age} años</small></td>
+    <td><b>${s.conv}</b></td>
+    <td class="${s._level === 'r' ? 'lose' : s._level === 'g' ? 'win' : ''}">${s.conv ? money(s.cpconv) : '—'}</td>
+    <td>${money(s.spend)}</td>
+    <td>${s.ctr}%</td>
+    <td>${money(s.cpc)}</td>
+    <td>${COP(s.reach)}<span class="ap" style="font-size:9px;margin-left:2px">~</span></td>
+    <td style="color:${freqColor(s.freq)}">${s.freq}</td>
+    <td>${s.ads}</td>
+  </tr>`).join('');
+  document.getElementById('setTable').innerHTML = `<thead><tr>
+    <th>Conjunto</th><th>Conv</th><th>Costo/conv</th><th>Inversión</th><th>CTR</th><th>CPC</th><th>Alcance ~</th><th>Frec.</th><th>Anuncios</th>
+  </tr></thead><tbody>${rows}</tbody>`;
+}
+
+function renderAll() {
+  const d = S.periods[CUR];
+  const avg = d.totals.cpconv;
+  const auds = applyScores(d.audiences, avg, { skipSets: true, minConv: 30 });
+  const sets = applyScores(d.sets, avg, { skipSets: true, minConv: 5 });
+  const sedes = applyScores(d.sedes, avg, { skipSets: true, minConv: 15 });
+  renderKPIs();
+
+  document.getElementById('audSummary').innerHTML = auds.map(a => audCardHTML(a, false)).join('');
+  document.getElementById('audCnt').textContent = auds.map(a => `${a.name.split(' ')[0]} ${a.conv}`).join(' · ');
+  document.getElementById('audCards').innerHTML = auds.map(a => audCardHTML(a, true)).join('');
+  renderSetTable(sets);
+  document.getElementById('alertCnt').textContent = alertCount(sets);
+
+  document.getElementById('sedeList').innerHTML = sedes.map(s => `
+    <button class="sede-btn nbb" data-c="${encodeURIComponent(s.sede)}">
+    <div class="sn">${esc(s.sede)}</div>
+    <div class="sr"><span>Conv <b>${s.conv}</b></span><span>Costo <b>${s.conv ? money(s.cpconv) : '—'}</b></span><span>Inv <b>${K(s.spend)}</b></span></div>
+    </button>`).join('');
+  document.getElementById('sedeDetail').innerHTML = '';
+
+  document.getElementById('adCards').innerHTML = d.ads.map(a => adCardHTML(a, {
+    variant: 'nbb', multiWord: 'AUDIENCIAS', singleLabel: 'Audiencia', partName: p => p.name,
+    breakdownTitle: a => `Detalle por audiencia (${a.campaigns})`, prev: d.prev ? d.prev.ads[a.ad] : null,
+  })).join('');
+  const multiCount = d.ads.filter(a => a.campaigns > 1).length;
+  document.getElementById('adCnt').textContent = `${d.ads.length} anuncios · ${multiCount} compartidos entre audiencias`;
+  renderComments(document.getElementById('comments'), 'nbb_' + CUR);
+}
+
+document.getElementById('sedeList').addEventListener('click', e => {
+  const btn = e.target.closest('.sede-btn'); if (!btn) return;
+  document.querySelectorAll('.sede-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active');
+  const name = decodeURIComponent(btn.dataset.c);
+  const s = S.periods[CUR].sedes.find(x => x.sede === name);
+  const det = document.getElementById('sedeDetail');
+  det.innerHTML = `<h2 class="sec">${esc(s.sede)} <span class="cnt">${s.sets} conjuntos · ${s.ads} anuncios</span></h2><div class="grid">${sedeCard(s)}</div>`;
+  det.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});
+
+renderNav('nbb.html');
+buildPeriodToggle(document.getElementById('periodToggle'),
+  [...shown.map(id => ({ id, label: weekLabel(id) })), { id: 'acc', label: S.periods.acc.label }],
+  CUR, p => { CUR = p; renderAll(); }, 'nbb');
+bindTabs(document.getElementById('viewTabs'), 'view-');
+document.getElementById('trendTitle').textContent = 'Tendencia · ' + S.trend.length + ' semana(s) · estrategia NBB';
+renderTrend(document.getElementById('trendBars'), S.trend, { color: 'var(--nbb)', colorDim: 'var(--nbb-dim)', extraLine: t => `<div>CTR ${t.ctr}%</div>` });
+renderAll();
+stamp();
+</script>
+</body>
+</html>

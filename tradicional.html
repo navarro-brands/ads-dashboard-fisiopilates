@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FisioPilates · Pauta tradicional · Centro de Comando Meta Ads</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <span class="eyebrow">Navarro Brands · Meta Ads</span>
+      <h1>FisioPilates · Centro de Comando</h1>
+      <span class="sub">Pauta tradicional <span class="strat trad">12 campañas por sede</span> · Conversión a WhatsApp · Bogotá</span>
+    </div>
+    <div class="winbadge">Ventana: <b id="winlabel"></b></div>
+  </header>
+  <nav class="topnav" id="topnav"></nav>
+
+  <div class="toolbar">
+    <div class="toggle" id="periodToggle"></div>
+    <div class="tabs" id="viewTabs">
+      <button data-v="overview" class="on">Panorama</button>
+      <button data-v="sedes">Por sede</button>
+      <button data-v="ads">Por anuncio</button>
+    </div>
+  </div>
+  <p class="note" id="scopeNote"></p>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div id="trendStrip" style="background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:26px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+      <div id="trendTitle" style="font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--teal)">Tendencia semanal</div>
+      <div class="trendHint" style="font-family:var(--mono);font-size:9px;color:var(--faint)">desliza →</div>
+    </div>
+    <div id="trendScroll"><div id="trendBars"></div></div>
+  </div>
+
+  <div id="view-overview">
+    <h2 class="sec">Alertas por urgencia <span class="cnt" id="alertCnt"></span></h2>
+    <div class="grid" id="cards"></div>
+  </div>
+
+  <div id="view-sedes" class="hidden">
+    <h2 class="sec">Selecciona una sede</h2>
+    <div class="sede-list" id="sedeList"></div>
+    <div id="sedeDetail"></div>
+  </div>
+
+  <div id="view-ads" class="hidden">
+    <h2 class="sec">Rendimiento por anuncio <span class="cnt" id="adCnt"></span></h2>
+    <div class="grid" id="adCards"></div>
+  </div>
+
+  <div class="comments" id="comments"></div>
+
+  <footer>
+    <span>Fuente: export Meta Ads Manager · Alcance deduplicado por Meta (no sumable) · Alcance por sede/anuncio aprox. · Moneda: COP</span>
+    <span id="genstamp"></span>
+  </footer>
+</div>
+
+<script src="assets/data.js"></script>
+<script src="assets/common.js"></script>
+<script>
+const S = DATA.trad;
+let CUR = DATA.cur;
+
+function renderKPIs() {
+  const d = S.periods[CUR], t = d.totals, prev = d.prev ? d.prev.totals : null;
+  document.getElementById('kpis').innerHTML = kpiHTML(standardKPIs(t, prev, t.campaigns + ' campañas · ' + t.ads + ' anuncios'));
+  document.getElementById('winlabel').textContent = d.start + ' → ' + d.end;
+  let scope;
+  if (CUR === 'acc') {
+    const sum = d.reach_weekly_sum, dup = sum - t.reach;
+    scope = `Acumulado de ${d.weeks} semanas (${d.label.replace('Acumulado (', '').replace(')', '')}). El alcance es deduplicado por Meta: ${COP(t.reach)} personas únicas, menor que la suma de las ${d.weeks} semanas (${COP(sum)}) porque ${COP(dup)} personas fueron alcanzadas en más de una. `;
+  } else {
+    scope = `Semana del ${d.label}, comparada contra la semana previa (${d.prev.label}). `;
+  }
+  document.getElementById('scopeNote').textContent = scope + 'Todas las conversaciones son «Conversaciones con mensajes iniciadas» (WhatsApp). Cifras en COP. El alcance por sede/anuncio es aproximado.';
+}
+
+function campCard(c) {
+  const d = S.periods[CUR];
+  return unitCardHTML(c, { eyebrow: 'FisioPilates · sede', title: c.sede, prev: d.prev ? d.prev.campaigns[c.campaign] : null, unitWord: 'esta sede' });
+}
+
+function renderAll() {
+  const d = S.periods[CUR];
+  const ordered = applyScores(d.campaigns, d.totals.cpconv);
+  renderKPIs();
+  document.getElementById('cards').innerHTML = ordered.map(campCard).join('');
+  document.getElementById('alertCnt').textContent = alertCount(ordered);
+
+  document.getElementById('sedeList').innerHTML = ordered.map(c => `
+    <button class="sede-btn" data-c="${encodeURIComponent(c.campaign)}">
+    <div class="sn">${esc(c.sede)}</div>
+    <div class="sr"><span>Conv <b>${c.conv}</b></span><span>Costo <b>${money(c.cpconv)}</b></span><span>Inv <b>${K(c.spend)}</b></span></div>
+    </button>`).join('');
+  document.getElementById('sedeDetail').innerHTML = '';
+
+  document.getElementById('adCards').innerHTML = d.ads.map(a => adCardHTML(a)).join('');
+  const multiCount = d.ads.filter(a => a.campaigns > 1).length;
+  document.getElementById('adCnt').textContent = `${d.ads.length} anuncios únicos · ${multiCount} compartidos entre sedes`;
+  renderComments(document.getElementById('comments'), 'trad_' + CUR);
+}
+
+document.getElementById('sedeList').addEventListener('click', e => {
+  const btn = e.target.closest('.sede-btn'); if (!btn) return;
+  document.querySelectorAll('.sede-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active');
+  const name = decodeURIComponent(btn.dataset.c);
+  const c = S.periods[CUR].campaigns.find(x => x.campaign === name);
+  const det = document.getElementById('sedeDetail');
+  det.innerHTML = `<h2 class="sec">${esc(c.sede)} <span class="cnt">${c.ads} anuncios · ${c.sets} conjunto(s)</span></h2><div class="grid">${campCard(c)}</div>`;
+  det.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});
+
+renderNav('tradicional.html');
+buildPeriodToggle(document.getElementById('periodToggle'),
+  [...DATA.periods_shown.map(id => ({ id, label: weekLabel(id) })), { id: 'acc', label: S.periods.acc.label }],
+  CUR, p => { CUR = p; renderAll(); });
+bindTabs(document.getElementById('viewTabs'), 'view-');
+document.getElementById('trendTitle').textContent = 'Tendencia · ' + S.trend.length + ' semanas · pauta tradicional';
+renderTrend(document.getElementById('trendBars'), S.trend);
+renderAll();
+stamp();
+</script>
+</body>
+</html>

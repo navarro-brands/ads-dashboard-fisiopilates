@@ -4,136 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FisioPilates · Centro de Comando Meta Ads</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap');
-  :root{
-    --bg:#0a0e14; --panel:#121821; --panel2:#161d28; --line:#232c3a;
-    --ink:#eef2f7; --muted:#8291a6; --faint:#5a677b;
-    --teal:#2dd4bf; --teal-dim:#134e4a;
-    --green:#34d399; --green-bg:#0d2a22;
-    --yellow:#fbbf24; --yellow-bg:#2c2510;
-    --red:#f87171; --red-bg:#2c1414;
-    --accent:#7c9cff;
-    --mono:'JetBrains Mono',monospace;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.4}
-  .wrap{max-width:1320px;margin:0 auto;padding:24px 20px 80px}
-  header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px;padding-bottom:20px;border-bottom:1px solid var(--line)}
-  .brand{display:flex;flex-direction:column;gap:4px}
-  .brand .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal)}
-  .brand h1{font-family:'Sora',sans-serif;font-weight:800;font-size:26px;letter-spacing:-.5px}
-  .brand .sub{color:var(--muted);font-size:13px}
-  .winbadge{font-family:var(--mono);font-size:12px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 12px}
-  .winbadge b{color:var(--ink)}
-  .toolbar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-bottom:22px}
-  .toggle{display:inline-flex;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:4px;gap:2px}
-  .toggle button{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.5px;color:var(--muted);background:transparent;border:0;padding:8px 16px;border-radius:7px;cursor:pointer;transition:.15s}
-  .toggle button.on{background:var(--teal);color:#04211d}
-  .toggle button:not(.on):hover{color:var(--ink)}
-  .tabs{display:inline-flex;gap:4px}
-  .tabs button{font-size:13px;font-weight:600;color:var(--muted);background:transparent;border:1px solid transparent;padding:9px 16px;border-radius:8px;cursor:pointer;transition:.15s}
-  .tabs button.on{background:var(--panel);border-color:var(--line);color:var(--ink)}
-  .tabs button:not(.on):hover{color:var(--ink)}
-  .note{font-size:12px;color:var(--faint);margin:-8px 0 20px;font-style:italic}
-  .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:26px}
-  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;position:relative;overflow:hidden}
-  .kpi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--teal);opacity:.5}
-  .kpi.star::before{opacity:1;background:linear-gradient(var(--teal),var(--accent))}
-  .kpi .label{font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--faint);margin-bottom:8px}
-  .kpi .val{font-family:'Sora',sans-serif;font-weight:700;font-size:22px;letter-spacing:-.5px;line-height:1}
-  .kpi .val .cur{font-size:11px;color:var(--muted);font-weight:600;margin-right:2px}
-  .kpi .foot{font-size:11px;color:var(--muted);margin-top:6px}
-  .kpi .tag{display:inline-block;font-family:var(--mono);font-size:8.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--faint);border:1px solid var(--line);border-radius:4px;padding:1px 5px;margin-top:6px}
-  .delta{font-family:var(--mono);font-size:10.5px;font-weight:700;margin-top:5px;display:inline-block}
-  .delta.up{color:var(--green)} .delta.down{color:var(--red)} .delta.flat{color:var(--faint)}
-  h2.sec{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;letter-spacing:.3px;margin:26px 0 14px;display:flex;align-items:center;gap:10px}
-  h2.sec::after{content:'';flex:1;height:1px;background:var(--line)}
-  h2.sec .cnt{font-family:var(--mono);font-size:11px;color:var(--faint);font-weight:500}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;position:relative;transition:.15s;border-left-width:4px}
-  .card:hover{border-color:var(--faint);transform:translateY(-2px)}
-  .card.g{border-left-color:var(--green)} .card.y{border-left-color:var(--yellow)} .card.r{border-left-color:var(--red)}
-  .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:14px}
-  .card .acct{font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--faint);margin-bottom:3px}
-  .card .cname{font-family:'Sora',sans-serif;font-weight:700;font-size:19px;letter-spacing:-.3px;line-height:1.1}
-  .badges{display:flex;flex-direction:column;gap:5px;align-items:flex-end;flex-shrink:0}
-  .pill{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.5px;padding:3px 8px;border-radius:20px;white-space:nowrap}
-  .pill.g{background:var(--green-bg);color:var(--green)} .pill.y{background:var(--yellow-bg);color:var(--yellow)} .pill.r{background:var(--red-bg);color:var(--red)}
-  .hero-metric{display:flex;align-items:baseline;gap:8px;padding:10px 0 12px;border-bottom:1px dashed var(--line);margin-bottom:12px}
-  .hero-metric .big{font-family:'Sora',sans-serif;font-weight:800;font-size:30px;color:var(--teal);letter-spacing:-1px}
-  .hero-metric .cap{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
-  .hero-metric .cost{margin-left:auto;text-align:right}
-  .hero-metric .cost b{font-family:var(--mono);font-size:14px;color:var(--ink);display:block}
-  .hero-metric .cost span{font-size:10px;color:var(--faint)}
-  .stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px 8px;margin-bottom:14px}
-  .stat .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--faint);margin-bottom:2px}
-  .stat .v{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums}
-  .stat .v .ap{font-size:9px;color:var(--faint);font-weight:500;font-family:var(--mono);margin-left:3px}
-  .cmp{font-family:var(--mono);font-size:10px;margin-top:-6px;margin-bottom:12px;padding:7px 9px;background:var(--panel2);border:1px solid var(--line);border-radius:8px;display:flex;gap:10px;flex-wrap:wrap}
-  .cmp span{color:var(--faint)}
-  .cmp b.up{color:var(--green)} .cmp b.down{color:var(--red)} .cmp b.flat{color:var(--muted)}
-  .freqrow{margin-bottom:12px}
-  .freqrow .flabel{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:4px;font-family:var(--mono);letter-spacing:.5px}
-  .fbar{height:6px;background:var(--panel2);border-radius:4px;overflow:hidden;border:1px solid var(--line)}
-  .fbar > i{display:block;height:100%;border-radius:4px}
-  .advice{display:flex;gap:8px;align-items:flex-start;font-size:12px;line-height:1.45;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--muted)}
-  .advice .dot{font-size:13px;line-height:1.1;flex-shrink:0}
-  .advice b{color:var(--ink);font-weight:600}
-  .sede-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:24px}
-  .sede-btn{text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;cursor:pointer;transition:.15s;color:var(--ink)}
-  .sede-btn:hover{border-color:var(--teal);transform:translateY(-2px)}
-  .sede-btn.active{border-color:var(--teal);background:var(--panel2)}
-  .sede-btn .sn{font-family:'Sora',sans-serif;font-weight:700;font-size:17px;margin-bottom:8px}
-  .sede-btn .sr{display:flex;gap:14px;font-size:12px;color:var(--muted)}
-  .sede-btn .sr b{color:var(--teal);font-family:var(--mono)}
-  .adcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
-  .adcard .atop{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px}
-  .adcard .aname{font-family:'Sora',sans-serif;font-weight:700;font-size:16px;line-height:1.2}
-  .adcard .ameta{font-family:var(--mono);font-size:10px;letter-spacing:.5px;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
-  .adhero{display:flex;align-items:baseline;gap:8px;padding-bottom:12px;border-bottom:1px dashed var(--line);margin-bottom:12px}
-  .adhero .big{font-family:'Sora',sans-serif;font-weight:800;font-size:26px;color:var(--teal)}
-  .adhero .cap{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
-  .adhero .cost{margin-left:auto;text-align:right}
-  .adhero .cost b{font-family:var(--mono);font-size:13px;display:block}
-  .adhero .cost span{font-size:10px;color:var(--faint)}
-  .breakdown{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
-  .breakdown .bh{font-family:var(--mono);font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--faint);margin-bottom:8px}
-  .brow{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:12px}
-  .brow:last-child{border-bottom:0}
-  .brow .bsede{font-weight:600;color:var(--ink)}
-  .brow .bsub{font-family:var(--mono);font-size:10px;color:var(--faint)}
-  .brow .bconv{font-family:var(--mono);color:var(--teal);font-weight:700;text-align:right}
-  .brow .bcost{font-family:var(--mono);color:var(--muted);text-align:right;font-size:11px}
-  .single-note{font-size:11px;color:var(--faint);font-family:var(--mono);margin-top:4px}
-  .hidden{display:none!important}
-  .comments{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:16px 18px;margin-top:28px;font-size:13px;color:var(--muted);line-height:1.65}
-  .comments b{color:var(--ink)}
-  .comments p{margin:0 0 10px}
-  .comments p:last-child{margin-bottom:0}
-  .comments .mh{font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
-  footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);font-size:11px;color:var(--faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono)}
-
-  /* Trend strip */
-  #trendScroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
-  #trendBars{display:flex;gap:12px;padding-bottom:4px}
-  .trendHint{display:none}
-  /* Desktop: bars share the full width, all visible, no scroll needed */
-  #trendBars > .tbar{flex:1 1 0;min-width:0}
-  /* Themed thin scrollbar */
-  #trendScroll::-webkit-scrollbar{height:6px}
-  #trendScroll::-webkit-scrollbar-track{background:transparent}
-  #trendScroll::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
-  #trendScroll::-webkit-scrollbar-thumb:hover{background:var(--faint)}
-  #trendScroll{scrollbar-width:thin;scrollbar-color:var(--line) transparent}
-  @media(max-width:640px){
-    /* Mobile: pin each bar to ~1/3 of the viewport and enable horizontal scroll */
-    #trendBars > .tbar{flex:0 0 calc((100% - 24px) / 3);min-width:92px}
-    .trendHint{display:block}
-  }
-  @media(max-width:1000px){.kpis{grid-template-columns:repeat(3,1fr)}}
-  @media(max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}.brand h1{font-size:22px}}
-</style>
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 <div class="wrap">
@@ -141,290 +12,175 @@
     <div class="brand">
       <span class="eyebrow">Navarro Brands · Meta Ads</span>
       <h1>FisioPilates · Centro de Comando</h1>
-      <span class="sub">Campañas activas · Conversión a WhatsApp · Bogotá</span>
+      <span class="sub">Resumen comparativo <span class="strat trad">Pauta tradicional</span> vs <span class="strat nbb">Estrategia NBB</span> · Conversión a WhatsApp · Bogotá</span>
     </div>
     <div class="winbadge">Ventana: <b id="winlabel"></b></div>
   </header>
+  <nav class="topnav" id="topnav"></nav>
 
   <div class="toolbar">
-    <div class="toggle" id="periodToggle">
-      <button data-p="w9" class="on">Últimos 7 días</button>
-      <button data-p="acc">Acumulado (29 jun – 30 ago)</button>
-    </div>
-    <div class="tabs" id="viewTabs">
-      <button data-v="overview" class="on">Panorama</button>
-      <button data-v="sedes">Por sede</button>
-      <button data-v="ads">Por anuncio</button>
-    </div>
+    <div class="toggle" id="periodToggle"></div>
+    <div class="legend"><span><i class="t"></i>Pauta tradicional</span><span><i class="n"></i>Estrategia NBB</span></div>
   </div>
   <p class="note" id="scopeNote"></p>
 
-  <div class="kpis" id="kpis"></div>
+  <div class="verdict" id="verdict"></div>
+
+  <div class="duel" id="duel"></div>
+
+  <div class="sharebox" id="share"></div>
 
   <div id="trendStrip" style="background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:26px">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-      <div id="trendTitle" style="font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--teal)">Tendencia semanal</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:10px;flex-wrap:wrap">
+      <div id="trendTitle" style="font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--teal)">Tendencia semanal · cuenta completa</div>
       <div class="trendHint" style="font-family:var(--mono);font-size:9px;color:var(--faint)">desliza →</div>
     </div>
-    <div id="trendScroll">
-      <div id="trendBars"></div>
-    </div>
+    <div id="trendScroll"><div id="trendBars"></div></div>
   </div>
 
-  <div id="view-overview">
-    <h2 class="sec">Alertas por urgencia <span class="cnt" id="alertCnt"></span></h2>
-    <div class="grid" id="cards"></div>
-  </div>
+  <h2 class="sec">Sede por sede <span class="cnt" id="sedeCnt"></span></h2>
+  <div class="tblwrap"><table class="t" id="sedeTable"></table></div>
+  <p class="tblnote">Δ costo = costo por conversación NBB frente al de la pauta tradicional en la misma sede y período (negativo = NBB más eficiente; ±10 % se lee como empate). Ordenado de mayor a menor ventaja NBB. Remarketing no tiene equivalente en la estrategia NBB.</p>
 
-  <div id="view-sedes" class="hidden">
-    <h2 class="sec">Selecciona una sede</h2>
-    <div class="sede-list" id="sedeList"></div>
-    <div id="sedeDetail"></div>
-  </div>
-
-  <div id="view-ads" class="hidden">
-    <h2 class="sec">Rendimiento por anuncio <span class="cnt" id="adCnt"></span></h2>
-    <div class="grid" id="adCards"></div>
-  </div>
-
-  <div class="comments">
-    <div class="mh">Comentarios del analista</div>
-    <p>Estos datos corresponden a las campañas activas previo a la gestión de NBB. La configuración de la nueva estrategia comienza con la primera publicación en formato reel. A partir de allí, comienza a mostrarse notas comparativas sobre ambas estrategias de campaña.</p>
-    <p>Tendencia de nueve semanas: tras el pico de la semana 3 (536 conversaciones a COP 3.237) el rendimiento se debilitó hasta la semana 8 (410 conversaciones, COP 4.183). La semana 9 muestra un rebote (451 conversaciones, COP 3.768), consistente con la recuperación de atención de la audiencia una vez pasado el impacto inmediato del sismo. Aun así, el nivel sigue por debajo del primer mes: la pauta actual, con creativos ya desgastados (frecuencia acumulada 4,04), tocó su techo.</p>
-    <p><b>Nota — contexto (terremoto):</b> El sismo del 10 de agosto en Colombia deprimió la interacción con contenido comercial durante las semanas 7 y 8; la semana 9 refleja una recuperación parcial de ese efecto.</p>
-    <p><b>Nota — nueva estrategia (arranque 31 ago):</b> Desde el lunes 31 de agosto de 2026 comienzan a rodar los anuncios de la nueva estrategia de Navarro Brands. Se estructura en 3 campañas definidas por audiencia, cada una segmentada en 11 conjuntos de anuncios (uno por sede). Todas las campañas comparten 2 reels iniciales —se irán sumando más— y cada una incluye posts propios que refuerzan el mensaje dirigido a su audiencia. A partir del próximo reporte, el desempeño de esta estrategia empezará a compararse frente a la pauta anterior.</p>
-  </div>
+  <div class="comments" id="comments"></div>
 
   <footer>
-    <span>Fuente: export Meta Ads Manager · Alcance deduplicado por Meta (no sumable) · Alcance por sede/anuncio aprox. · Moneda: COP</span>
+    <span>Fuente: export Meta Ads Manager · Alcance deduplicado por Meta (no sumable) · Presupuestos distintos: comparar eficiencia, no volumen · Moneda: COP</span>
     <span id="genstamp"></span>
   </footer>
 </div>
 
+<script src="assets/data.js"></script>
+<script src="assets/common.js"></script>
 <script>
-const P = {"w9": {"label": "Últimos 7 días", "start": "2026-08-24", "end": "2026-08-30", "campaigns": [{"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 168505, "conv": 37, "cpconv": 4554, "imp": 15065, "reach": 10466, "clicks": 91, "cpc": 1852, "ctr": 0.6, "freq": 1.44, "ads": 8, "sets": 1, "below_q": 0, "tot_q": 8, "below_ctr": 0, "below_cvr": 0}, {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 147723, "conv": 29, "cpconv": 5094, "imp": 9947, "reach": 8690, "clicks": 81, "cpc": 1824, "ctr": 0.81, "freq": 1.14, "ads": 13, "sets": 1, "below_q": 0, "tot_q": 13, "below_ctr": 0, "below_cvr": 1}, {"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 146058, "conv": 37, "cpconv": 3948, "imp": 13076, "reach": 10695, "clicks": 87, "cpc": 1679, "ctr": 0.67, "freq": 1.22, "ads": 7, "sets": 1, "below_q": 0, "tot_q": 7, "below_ctr": 0, "below_cvr": 0}, {"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 142870, "conv": 43, "cpconv": 3323, "imp": 13476, "reach": 10615, "clicks": 119, "cpc": 1201, "ctr": 0.88, "freq": 1.27, "ads": 12, "sets": 1, "below_q": 0, "tot_q": 12, "below_ctr": 0, "below_cvr": 3}, {"campaign": "CO | Av. El Dorado | Ventas Whatsapp - 3114455348", "sede": "Av. El Dorado", "spend": 138361, "conv": 38, "cpconv": 3641, "imp": 15593, "reach": 12656, "clicks": 104, "cpc": 1330, "ctr": 0.67, "freq": 1.23, "ads": 6, "sets": 1, "below_q": 0, "tot_q": 6, "below_ctr": 0, "below_cvr": 0}, {"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 138145, "conv": 20, "cpconv": 6907, "imp": 6467, "reach": 5001, "clicks": 51, "cpc": 2709, "ctr": 0.79, "freq": 1.29, "ads": 7, "sets": 1, "below_q": 0, "tot_q": 7, "below_ctr": 0, "below_cvr": 1}, {"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 137339, "conv": 41, "cpconv": 3350, "imp": 12444, "reach": 11135, "clicks": 98, "cpc": 1401, "ctr": 0.79, "freq": 1.12, "ads": 12, "sets": 1, "below_q": 0, "tot_q": 12, "below_ctr": 0, "below_cvr": 1}, {"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 136987, "conv": 48, "cpconv": 2854, "imp": 12322, "reach": 10936, "clicks": 109, "cpc": 1257, "ctr": 0.88, "freq": 1.13, "ads": 11, "sets": 1, "below_q": 0, "tot_q": 11, "below_ctr": 0, "below_cvr": 1}, {"campaign": "CO | Chicó Norte | Ventas Whatsapp - 3235137959", "sede": "Chicó Norte", "spend": 136971, "conv": 49, "cpconv": 2795, "imp": 8704, "reach": 6393, "clicks": 112, "cpc": 1223, "ctr": 1.29, "freq": 1.36, "ads": 5, "sets": 1, "below_q": 0, "tot_q": 5, "below_ctr": 0, "below_cvr": 0}, {"campaign": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "sede": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "spend": 136821, "conv": 34, "cpconv": 4024, "imp": 16129, "reach": 11438, "clicks": 171, "cpc": 800, "ctr": 1.06, "freq": 1.41, "ads": 7, "sets": 1, "below_q": 0, "tot_q": 7, "below_ctr": 0, "below_cvr": 0}, {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 136368, "conv": 25, "cpconv": 5455, "imp": 8663, "reach": 8171, "clicks": 88, "cpc": 1550, "ctr": 1.02, "freq": 1.06, "ads": 22, "sets": 2, "below_q": 0, "tot_q": 22, "below_ctr": 0, "below_cvr": 2}, {"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 133018, "conv": 50, "cpconv": 2660, "imp": 11259, "reach": 9626, "clicks": 103, "cpc": 1291, "ctr": 0.91, "freq": 1.17, "ads": 7, "sets": 1, "below_q": 0, "tot_q": 7, "below_ctr": 0, "below_cvr": 1}], "totals": {"spend": 1699166, "conv": 451, "imp": 143145, "clicks": 1214, "campaigns": 12, "ads": 117, "cpconv": 3768, "cpc": 1400, "ctr": 0.85, "reach": 78596, "freq": 1.82}, "ads": [{"ad": "ABR 26 Anuncio | Video Señal", "campaigns": 11, "parts": [{"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 128187, "conv": 48, "cpconv": 2671, "clicks": 97}, {"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 121921, "conv": 39, "cpconv": 3126, "clicks": 92}, {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 90338, "conv": 17, "cpconv": 5314, "clicks": 58}, {"campaign": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "sede": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "spend": 6899, "conv": 3, "cpconv": 2300, "clicks": 4}, {"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 4963, "conv": 2, "cpconv": 2482, "clicks": 3}, {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 4348, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 1514, "conv": 0, "cpconv": 0, "clicks": 1}, {"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 623, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Av. El Dorado | Ventas Whatsapp - 3114455348", "sede": "Av. El Dorado", "spend": 571, "conv": 1, "cpconv": 571, "clicks": 1}, {"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 317, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 160, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 359841, "conv": 110, "cpconv": 3271, "imp": 28376, "reach": 25268, "clicks": 256, "ctr": 0.9, "cpc": 1406}, {"ad": "MAR 26 Anuncio | Video Esto es Fisiopilates", "campaigns": 11, "parts": [{"campaign": "CO | Chicó Norte | Ventas Whatsapp - 3235137959", "sede": "Chicó Norte", "spend": 129716, "conv": 45, "cpconv": 2883, "clicks": 106}, {"campaign": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "sede": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "spend": 5621, "conv": 0, "cpconv": 0, "clicks": 3}, {"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 1312, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 1191, "conv": 0, "cpconv": 0, "clicks": 2}, {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 678, "conv": 1, "cpconv": 678, "clicks": 2}, {"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 283, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Av. El Dorado | Ventas Whatsapp - 3114455348", "sede": "Av. El Dorado", "spend": 203, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 174, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 153, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 69, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 12, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 139412, "conv": 46, "cpconv": 3031, "imp": 8751, "reach": 6437, "clicks": 113, "ctr": 1.29, "cpc": 1234}, {"ad": "Anuncio 8 | Video Promociones 2", "campaigns": 1, "parts": [{"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 125093, "conv": 39, "cpconv": 3208, "clicks": 88}], "spend": 125093, "conv": 39, "cpconv": 3208, "imp": 11803, "reach": 10558, "clicks": 88, "ctr": 0.75, "cpc": 1422}, {"ad": "Video Pos inauguración", "campaigns": 1, "parts": [{"campaign": "CO | Av. El Dorado | Ventas Whatsapp - 3114455348", "sede": "Av. El Dorado", "spend": 133600, "conv": 36, "cpconv": 3711, "clicks": 100}], "spend": 133600, "conv": 36, "cpconv": 3711, "imp": 14990, "reach": 12075, "clicks": 100, "ctr": 0.67, "cpc": 1336}, {"ad": "Video 1 nueva sede", "campaigns": 1, "parts": [{"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 159625, "conv": 35, "cpconv": 4561, "clicks": 86}], "spend": 159625, "conv": 35, "cpconv": 4561, "imp": 14270, "reach": 9760, "clicks": 86, "ctr": 0.6, "cpc": 1856}, {"ad": "Video | promocional nueva sede salitre", "campaigns": 1, "parts": [{"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 135221, "conv": 34, "cpconv": 3977, "clicks": 76}], "spend": 135221, "conv": 34, "cpconv": 3977, "imp": 11928, "reach": 9686, "clicks": 76, "ctr": 0.64, "cpc": 1779}, {"ad": "Enero - Video General Contador", "campaigns": 1, "parts": [{"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 135992, "conv": 28, "cpconv": 4857, "clicks": 74}], "spend": 135992, "conv": 28, "cpconv": 4857, "imp": 9269, "reach": 8047, "clicks": 74, "ctr": 0.8, "cpc": 1838}, {"ad": "Imagen Bulevar", "campaigns": 1, "parts": [{"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 76519, "conv": 24, "cpconv": 3188, "clicks": 71}], "spend": 76519, "conv": 24, "cpconv": 3188, "imp": 7750, "reach": 5677, "clicks": 71, "ctr": 0.92, "cpc": 1078}, {"ad": "FEB 26  Imagen beneficios mes", "campaigns": 2, "parts": [{"campaign": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "sede": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "spend": 98481, "conv": 21, "cpconv": 4690, "clicks": 143}, {"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 95, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 98576, "conv": 21, "cpconv": 4694, "imp": 12603, "reach": 8455, "clicks": 143, "ctr": 1.13, "cpc": 689}, {"ad": "Enero -Video  General Calle 119", "campaigns": 1, "parts": [{"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 136722, "conv": 20, "cpconv": 6836, "clicks": 51}], "spend": 136722, "conv": 20, "cpconv": 6836, "imp": 6362, "reach": 4902, "clicks": 51, "ctr": 0.8, "cpc": 2681}, {"ad": "Enero - Video General Bulevar", "campaigns": 1, "parts": [{"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 55778, "conv": 15, "cpconv": 3719, "clicks": 42}], "spend": 55778, "conv": 15, "cpconv": 3719, "imp": 4757, "reach": 4075, "clicks": 42, "ctr": 0.88, "cpc": 1328}, {"ad": "Anuncio 6 | Video Promociones 2", "campaigns": 3, "parts": [{"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 13512, "conv": 7, "cpconv": 1930, "clicks": 15}, {"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 3958, "conv": 2, "cpconv": 1979, "clicks": 6}, {"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 359, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 17829, "conv": 9, "cpconv": 1981, "imp": 2047, "reach": 1865, "clicks": 21, "ctr": 1.03, "cpc": 849}, {"ad": "Enero -Video General Cedritos", "campaigns": 1, "parts": [{"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 26917, "conv": 5, "cpconv": 5383, "clicks": 16}], "spend": 26917, "conv": 5, "cpconv": 5383, "imp": 1737, "reach": 1618, "clicks": 16, "ctr": 0.92, "cpc": 1682}, {"ad": "FEB 26  Video beneficios mes", "campaigns": 2, "parts": [{"campaign": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "sede": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "spend": 6475, "conv": 4, "cpconv": 1619, "clicks": 9}, {"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 516, "conv": 1, "cpconv": 516, "clicks": 1}], "spend": 6991, "conv": 5, "cpconv": 1398, "imp": 590, "reach": 470, "clicks": 10, "ctr": 1.69, "cpc": 699}, {"ad": "MAR 26 Anuncio | Video Fisio es para todos - Copia", "campaigns": 2, "parts": [{"campaign": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "sede": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "spend": 11769, "conv": 4, "cpconv": 2942, "clicks": 9}, {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 4, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 11773, "conv": 4, "cpconv": 2943, "imp": 972, "reach": 789, "clicks": 9, "ctr": 0.93, "cpc": 1308}, {"ad": "ABR 26 Anuncio | Video Señal - Copia", "campaigns": 1, "parts": [{"campaign": "CO | Chicó Norte | Ventas Whatsapp - 3235137959", "sede": "Chicó Norte", "spend": 6666, "conv": 4, "cpconv": 1666, "clicks": 5}], "spend": 6666, "conv": 4, "cpconv": 1666, "imp": 580, "reach": 533, "clicks": 5, "ctr": 0.86, "cpc": 1333}, {"ad": "Carrusel | nueva sede salitre", "campaigns": 1, "parts": [{"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 6126, "conv": 3, "cpconv": 2042, "clicks": 9}], "spend": 6126, "conv": 3, "cpconv": 2042, "imp": 755, "reach": 639, "clicks": 9, "ctr": 1.19, "cpc": 681}, {"ad": "Anuncio 7 | Video Cómo llegar Cedritos", "campaigns": 1, "parts": [{"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 9621, "conv": 2, "cpconv": 4810, "clicks": 9}], "spend": 9621, "conv": 2, "cpconv": 4810, "imp": 779, "reach": 667, "clicks": 9, "ctr": 1.16, "cpc": 1069}, {"ad": "Anuncio 7 | Video Promociones Agosto", "campaigns": 1, "parts": [{"campaign": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "sede": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "spend": 6637, "conv": 2, "cpconv": 3318, "clicks": 3}], "spend": 6637, "conv": 2, "cpconv": 3318, "imp": 776, "reach": 628, "clicks": 3, "ctr": 0.39, "cpc": 2212}, {"ad": "MAR 26 Anuncio | Video Fisio es para todos", "campaigns": 6, "parts": [{"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 1116, "conv": 2, "cpconv": 558, "clicks": 2}, {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 280, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Chicó Norte | Ventas Whatsapp - 3235137959", "sede": "Chicó Norte", "spend": 219, "conv": 0, "cpconv": 0, "clicks": 1}, {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 199, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 63, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 6, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 1883, "conv": 2, "cpconv": 942, "imp": 163, "reach": 152, "clicks": 3, "ctr": 1.84, "cpc": 628}, {"ad": "Anuncio 2 | Imagen Promos", "campaigns": 3, "parts": [{"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 4443, "conv": 1, "cpconv": 4443, "clicks": 2}, {"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 560, "conv": 0, "cpconv": 0, "clicks": 2}, {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 421, "conv": 0, "cpconv": 0, "clicks": 1}], "spend": 5424, "conv": 1, "cpconv": 5424, "imp": 438, "reach": 400, "clicks": 5, "ctr": 1.14, "cpc": 1085}, {"ad": "Imagen 2 Bulevar", "campaigns": 1, "parts": [{"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 4319, "conv": 1, "cpconv": 4319, "clicks": 2}], "spend": 4319, "conv": 1, "cpconv": 4319, "imp": 506, "reach": 424, "clicks": 2, "ctr": 0.4, "cpc": 2160}, {"ad": "Imagen 1 nueva sede", "campaigns": 1, "parts": [{"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 3203, "conv": 1, "cpconv": 3203, "clicks": 1}], "spend": 3203, "conv": 1, "cpconv": 3203, "imp": 280, "reach": 249, "clicks": 1, "ctr": 0.36, "cpc": 3203}, {"ad": "MAR 26 Anuncio |Video General Mazuren", "campaigns": 2, "parts": [{"campaign": "CO | Av. El Dorado | Ventas Whatsapp - 3114455348", "sede": "Av. El Dorado", "spend": 3097, "conv": 1, "cpconv": 3097, "clicks": 3}, {"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 1632, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 4729, "conv": 1, "cpconv": 4729, "imp": 475, "reach": 460, "clicks": 3, "ctr": 0.63, "cpc": 1576}, {"ad": "Imagen 2 nueva sede", "campaigns": 1, "parts": [{"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 1932, "conv": 1, "cpconv": 1932, "clicks": 2}], "spend": 1932, "conv": 1, "cpconv": 1932, "imp": 247, "reach": 231, "clicks": 2, "ctr": 0.81, "cpc": 966}, {"ad": "Anuncio 7 | Video Promociones", "campaigns": 2, "parts": [{"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 661, "conv": 1, "cpconv": 661, "clicks": 1}, {"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 487, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 1148, "conv": 1, "cpconv": 1148, "imp": 89, "reach": 81, "clicks": 1, "ctr": 1.12, "cpc": 1148}, {"ad": "Enero -Video General Sta Barbara", "campaigns": 1, "parts": [{"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 164, "conv": 1, "cpconv": 164, "clicks": 1}], "spend": 164, "conv": 1, "cpconv": 164, "imp": 16, "reach": 16, "clicks": 1, "ctr": 6.25, "cpc": 164}, {"ad": "Anuncio 1 | Video Promociones", "campaigns": 4, "parts": [{"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 3354, "conv": 0, "cpconv": 0, "clicks": 2}, {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 1353, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 697, "conv": 0, "cpconv": 0, "clicks": 1}, {"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 10, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 5414, "conv": 0, "cpconv": 0, "imp": 176, "reach": 156, "clicks": 3, "ctr": 1.7, "cpc": 1805}, {"ad": "Enero -Video General Salitre", "campaigns": 1, "parts": [{"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 2520, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 2520, "conv": 0, "cpconv": 0, "imp": 213, "reach": 204, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "Anuncio 3 | Carrusel Promos", "campaigns": 5, "parts": [{"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 1933, "conv": 0, "cpconv": 0, "clicks": 2}, {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 1874, "conv": 0, "cpconv": 0, "clicks": 2}, {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 686, "conv": 0, "cpconv": 0, "clicks": 1}, {"campaign": "CO | Chicó Norte | Ventas Whatsapp - 3235137959", "sede": "Chicó Norte", "spend": 308, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 277, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 5078, "conv": 0, "cpconv": 0, "imp": 259, "reach": 220, "clicks": 5, "ctr": 1.93, "cpc": 1016}, {"ad": "Video | cómo llegar Salitre", "campaigns": 1, "parts": [{"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 1620, "conv": 0, "cpconv": 0, "clicks": 2}], "spend": 1620, "conv": 0, "cpconv": 0, "imp": 138, "reach": 124, "clicks": 2, "ctr": 1.45, "cpc": 810}, {"ad": "Anuncio  | video como llegar sede cedro golf", "campaigns": 1, "parts": [{"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 1248, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 1248, "conv": 0, "cpconv": 0, "imp": 65, "reach": 55, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "Video 2 nueva sede", "campaigns": 1, "parts": [{"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 1227, "conv": 0, "cpconv": 0, "clicks": 1}], "spend": 1227, "conv": 0, "cpconv": 0, "imp": 118, "reach": 87, "clicks": 1, "ctr": 0.85, "cpc": 1227}, {"ad": "Anuncio 8 | Video Promociones agosto", "campaigns": 3, "parts": [{"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 1014, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 482, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 88, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 1584, "conv": 0, "cpconv": 0, "imp": 114, "reach": 103, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "ABR 26 Anuncio | Video DOLOR", "campaigns": 8, "parts": [{"campaign": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "sede": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "spend": 939, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 377, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 180, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 153, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 110, "conv": 0, "cpconv": 0, "clicks": 1}, {"campaign": "CO | Chicó Norte | Ventas Whatsapp - 3235137959", "sede": "Chicó Norte", "spend": 62, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Av. El Dorado | Ventas Whatsapp - 3114455348", "sede": "Av. El Dorado", "spend": 55, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 50, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 1926, "conv": 0, "cpconv": 0, "imp": 178, "reach": 167, "clicks": 1, "ctr": 0.56, "cpc": 1926}, {"ad": "Anuncio 6 | Video Cómo llegar Contador", "campaigns": 1, "parts": [{"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 914, "conv": 0, "cpconv": 0, "clicks": 1}], "spend": 914, "conv": 0, "cpconv": 0, "imp": 73, "reach": 67, "clicks": 1, "ctr": 1.37, "cpc": 914}, {"ad": "Video lanzamient4 - ¿como llegar a bulevar?", "campaigns": 1, "parts": [{"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 866, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 866, "conv": 0, "cpconv": 0, "imp": 60, "reach": 54, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "Video Cómo llegar", "campaigns": 1, "parts": [{"campaign": "CO | Av. El Dorado | Ventas Whatsapp - 3114455348", "sede": "Av. El Dorado", "spend": 835, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 835, "conv": 0, "cpconv": 0, "imp": 112, "reach": 104, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "OCT Anuncio 8 | Imagen", "campaigns": 5, "parts": [{"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 631, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 433, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 231, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 218, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 36, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 1549, "conv": 0, "cpconv": 0, "imp": 132, "reach": 129, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "FEB 26 -Carrusel General cedro golf", "campaigns": 1, "parts": [{"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 527, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 527, "conv": 0, "cpconv": 0, "imp": 37, "reach": 34, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "Enero - Video General Carmel", "campaigns": 1, "parts": [{"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 516, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 516, "conv": 0, "cpconv": 0, "imp": 24, "reach": 23, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "FEB 26 -Video General Cedritos", "campaigns": 1, "parts": [{"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 348, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 348, "conv": 0, "cpconv": 0, "imp": 19, "reach": 18, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "FEB 26 -Carrusel General Cedritos", "campaigns": 1, "parts": [{"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 282, "conv": 0, "cpconv": 0, "clicks": 1}], "spend": 282, "conv": 0, "cpconv": 0, "imp": 47, "reach": 46, "clicks": 1, "ctr": 2.13, "cpc": 282}, {"ad": "Video | Sede aesthetic", "campaigns": 1, "parts": [{"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 250, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 250, "conv": 0, "cpconv": 0, "imp": 17, "reach": 17, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "FEB 26 -Video General Calle 119", "campaigns": 1, "parts": [{"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 237, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 237, "conv": 0, "cpconv": 0, "imp": 9, "reach": 9, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "| Video Promociones general", "campaigns": 2, "parts": [{"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 105, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 37, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 142, "conv": 0, "cpconv": 0, "imp": 13, "reach": 11, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "FEB 26 -Video General Contador", "campaigns": 1, "parts": [{"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 93, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 93, "conv": 0, "cpconv": 0, "imp": 10, "reach": 10, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "FEB 26 -Carrusel General contador", "campaigns": 1, "parts": [{"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 77, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 77, "conv": 0, "cpconv": 0, "imp": 9, "reach": 9, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "FEB 26 -Video General Carmel", "campaigns": 1, "parts": [{"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 42, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 42, "conv": 0, "cpconv": 0, "imp": 2, "reach": 2, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "MAR 26 Anuncio | Video Dolor", "campaigns": 1, "parts": [{"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 40, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 40, "conv": 0, "cpconv": 0, "imp": 3, "reach": 3, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "FEB 26 -Video General Santa bárbara", "campaigns": 1, "parts": [{"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 33, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 33, "conv": 0, "cpconv": 0, "imp": 1, "reach": 1, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "Video promociones general", "campaigns": 1, "parts": [{"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 25, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 25, "conv": 0, "cpconv": 0, "imp": 2, "reach": 2, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "Anuncio 3 | Imagen Promos", "campaigns": 1, "parts": [{"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 22, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 22, "conv": 0, "cpconv": 0, "imp": 3, "reach": 3, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "Video Promociones general", "campaigns": 1, "parts": [{"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 6, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 6, "conv": 0, "cpconv": 0, "imp": 1, "reach": 1, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "Video Promociones General", "campaigns": 1, "parts": [{"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 4, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 4, "conv": 0, "cpconv": 0, "imp": 1, "reach": 1, "clicks": 0, "ctr": 0.0, "cpc": 0}]}, "acc": {"label": "Acumulado (29 jun – 30 ago)", "start": "2026-06-29", "end": "2026-08-30", "campaigns": [{"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 1566166, "conv": 357, "cpconv": 4387, "imp": 159599, "reach": 109683, "clicks": 965, "cpc": 1623, "ctr": 0.6, "freq": 1.46, "ads": 71, "sets": 1, "below_q": 0, "tot_q": 71, "below_ctr": 0, "below_cvr": 5}, {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 1259703, "conv": 299, "cpconv": 4213, "imp": 90709, "reach": 76687, "clicks": 834, "cpc": 1510, "ctr": 0.92, "freq": 1.18, "ads": 115, "sets": 1, "below_q": 0, "tot_q": 115, "below_ctr": 0, "below_cvr": 9}, {"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 1256456, "conv": 335, "cpconv": 3751, "imp": 110271, "reach": 86704, "clicks": 681, "cpc": 1845, "ctr": 0.62, "freq": 1.27, "ads": 83, "sets": 1, "below_q": 0, "tot_q": 83, "below_ctr": 0, "below_cvr": 1}, {"campaign": "CO | Av. El Dorado | Ventas Whatsapp - 3114455348", "sede": "Av. El Dorado", "spend": 1256108, "conv": 445, "cpconv": 2823, "imp": 138520, "reach": 107697, "clicks": 978, "cpc": 1284, "ctr": 0.71, "freq": 1.29, "ads": 54, "sets": 1, "below_q": 0, "tot_q": 54, "below_ctr": 0, "below_cvr": 2}, {"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 1253484, "conv": 333, "cpconv": 3764, "imp": 110192, "reach": 80581, "clicks": 1080, "cpc": 1161, "ctr": 0.98, "freq": 1.37, "ads": 108, "sets": 1, "below_q": 0, "tot_q": 108, "below_ctr": 0, "below_cvr": 16}, {"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 1253182, "conv": 352, "cpconv": 3560, "imp": 117380, "reach": 97912, "clicks": 930, "cpc": 1348, "ctr": 0.79, "freq": 1.2, "ads": 105, "sets": 1, "below_q": 0, "tot_q": 105, "below_ctr": 0, "below_cvr": 9}, {"campaign": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "sede": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "spend": 1253136, "conv": 352, "cpconv": 3560, "imp": 111073, "reach": 85400, "clicks": 1008, "cpc": 1243, "ctr": 0.91, "freq": 1.3, "ads": 63, "sets": 1, "below_q": 0, "tot_q": 63, "below_ctr": 0, "below_cvr": 13}, {"campaign": "CO | Chicó Norte | Ventas Whatsapp - 3235137959", "sede": "Chicó Norte", "spend": 1252151, "conv": 508, "cpconv": 2465, "imp": 91583, "reach": 67038, "clicks": 1124, "cpc": 1114, "ctr": 1.23, "freq": 1.37, "ads": 56, "sets": 1, "below_q": 0, "tot_q": 56, "below_ctr": 0, "below_cvr": 3}, {"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 1251887, "conv": 421, "cpconv": 2974, "imp": 108725, "reach": 95602, "clicks": 972, "cpc": 1288, "ctr": 0.89, "freq": 1.14, "ads": 87, "sets": 1, "below_q": 0, "tot_q": 87, "below_ctr": 0, "below_cvr": 7}, {"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 1251609, "conv": 363, "cpconv": 3448, "imp": 101896, "reach": 88778, "clicks": 961, "cpc": 1302, "ctr": 0.94, "freq": 1.15, "ads": 89, "sets": 1, "below_q": 0, "tot_q": 89, "below_ctr": 1, "below_cvr": 7}, {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 1250114, "conv": 273, "cpconv": 4579, "imp": 83837, "reach": 74292, "clicks": 791, "cpc": 1580, "ctr": 0.94, "freq": 1.13, "ads": 203, "sets": 2, "below_q": 0, "tot_q": 203, "below_ctr": 2, "below_cvr": 14}, {"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 1247567, "conv": 225, "cpconv": 5545, "imp": 65041, "reach": 48267, "clicks": 532, "cpc": 2345, "ctr": 0.82, "freq": 1.35, "ads": 128, "sets": 3, "below_q": 0, "tot_q": 128, "below_ctr": 0, "below_cvr": 11}], "totals": {"spend": 15351563, "conv": 4263, "imp": 1288826, "clicks": 10856, "campaigns": 12, "ads": 1162, "cpconv": 3601, "cpc": 1414, "ctr": 0.84, "reach": 318722, "freq": 4.04}, "ads": [{"ad": "ABR 26 Anuncio | Video Señal", "campaigns": 11, "parts": [{"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 1208016, "conv": 346, "cpconv": 3491, "clicks": 920}, {"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 1199108, "conv": 406, "cpconv": 2953, "clicks": 923}, {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 781190, "conv": 161, "cpconv": 4852, "clicks": 450}, {"campaign": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "sede": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "spend": 359794, "conv": 93, "cpconv": 3869, "clicks": 255}, {"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 143301, "conv": 32, "cpconv": 4478, "clicks": 92}, {"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 35355, "conv": 5, "cpconv": 7071, "clicks": 13}, {"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 33855, "conv": 3, "cpconv": 11285, "clicks": 6}, {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 21280, "conv": 6, "cpconv": 3547, "clicks": 8}, {"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 15003, "conv": 4, "cpconv": 3751, "clicks": 7}, {"campaign": "CO | Av. El Dorado | Ventas Whatsapp - 3114455348", "sede": "Av. El Dorado", "spend": 8889, "conv": 3, "cpconv": 2963, "clicks": 8}, {"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 3475, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 3809266, "conv": 1059, "cpconv": 3597, "imp": 302766, "reach": 265453, "clicks": 2682, "ctr": 0.89, "cpc": 1420}, {"ad": "MAR 26 Anuncio | Video Esto es Fisiopilates", "campaigns": 12, "parts": [{"campaign": "CO | Chicó Norte | Ventas Whatsapp - 3235137959", "sede": "Chicó Norte", "spend": 1093665, "conv": 450, "cpconv": 2430, "clicks": 981}, {"campaign": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "sede": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "spend": 347751, "conv": 105, "cpconv": 3312, "clicks": 230}, {"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 47940, "conv": 5, "cpconv": 9588, "clicks": 11}, {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 32574, "conv": 8, "cpconv": 4072, "clicks": 14}, {"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 18661, "conv": 2, "cpconv": 9330, "clicks": 8}, {"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 15986, "conv": 2, "cpconv": 7993, "clicks": 8}, {"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 12412, "conv": 1, "cpconv": 12412, "clicks": 4}, {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 9203, "conv": 2, "cpconv": 4602, "clicks": 10}, {"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 7268, "conv": 0, "cpconv": 0, "clicks": 2}, {"campaign": "CO | Av. El Dorado | Ventas Whatsapp - 3114455348", "sede": "Av. El Dorado", "spend": 2551, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 1914, "conv": 0, "cpconv": 0, "clicks": 2}, {"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 1145, "conv": 0, "cpconv": 0, "clicks": 2}], "spend": 1591070, "conv": 575, "cpconv": 2767, "imp": 112568, "reach": 83521, "clicks": 1272, "ctr": 1.13, "cpc": 1251}, {"ad": "Video Pos inauguración", "campaigns": 1, "parts": [{"campaign": "CO | Av. El Dorado | Ventas Whatsapp - 3114455348", "sede": "Av. El Dorado", "spend": 1226506, "conv": 435, "cpconv": 2820, "clicks": 952}], "spend": 1226506, "conv": 435, "cpconv": 2820, "imp": 135730, "reach": 105036, "clicks": 952, "ctr": 0.7, "cpc": 1288}, {"ad": "Anuncio 8 | Video Promociones 2", "campaigns": 2, "parts": [{"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 1173558, "conv": 344, "cpconv": 3412, "clicks": 900}, {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 3353, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 1176911, "conv": 344, "cpconv": 3421, "imp": 113307, "reach": 94112, "clicks": 900, "ctr": 0.79, "cpc": 1308}, {"ad": "Video | promocional nueva sede salitre", "campaigns": 1, "parts": [{"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 1216996, "conv": 330, "cpconv": 3688, "clicks": 656}], "spend": 1216996, "conv": 330, "cpconv": 3688, "imp": 106692, "reach": 83430, "clicks": 656, "ctr": 0.61, "cpc": 1855}, {"ad": "Video 1 nueva sede", "campaigns": 1, "parts": [{"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 1379025, "conv": 312, "cpconv": 4420, "clicks": 836}], "spend": 1379025, "conv": 312, "cpconv": 4420, "imp": 140072, "reach": 93398, "clicks": 836, "ctr": 0.6, "cpc": 1650}, {"ad": "Enero - Video General Contador", "campaigns": 1, "parts": [{"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 1180735, "conv": 288, "cpconv": 4100, "clicks": 788}], "spend": 1180735, "conv": 288, "cpconv": 4100, "imp": 85745, "reach": 72029, "clicks": 788, "ctr": 0.92, "cpc": 1498}, {"ad": "Imagen Bulevar", "campaigns": 1, "parts": [{"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 795430, "conv": 234, "cpconv": 3399, "clicks": 775}], "spend": 795430, "conv": 234, "cpconv": 3399, "imp": 76560, "reach": 51309, "clicks": 775, "ctr": 1.01, "cpc": 1026}, {"ad": "Enero -Video  General Calle 119", "campaigns": 1, "parts": [{"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 1030169, "conv": 199, "cpconv": 5177, "clicks": 444}], "spend": 1030169, "conv": 199, "cpconv": 5177, "imp": 52081, "reach": 37489, "clicks": 444, "ctr": 0.85, "cpc": 2320}, {"ad": "ABR 26 Anuncio | Video Señal - Copia", "campaigns": 1, "parts": [{"campaign": "CO | Chicó Norte | Ventas Whatsapp - 3235137959", "sede": "Chicó Norte", "spend": 150560, "conv": 57, "cpconv": 2641, "clicks": 136}], "spend": 150560, "conv": 57, "cpconv": 2641, "imp": 14350, "reach": 12359, "clicks": 136, "ctr": 0.95, "cpc": 1107}, {"ad": "FEB 26  Imagen beneficios mes", "campaigns": 2, "parts": [{"campaign": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "sede": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "spend": 235038, "conv": 53, "cpconv": 4435, "clicks": 309}, {"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 6571, "conv": 1, "cpconv": 6571, "clicks": 9}], "spend": 241609, "conv": 54, "cpconv": 4474, "imp": 25321, "reach": 16513, "clicks": 318, "ctr": 1.26, "cpc": 760}, {"ad": "Enero -Video General Cedritos", "campaigns": 1, "parts": [{"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 233981, "conv": 52, "cpconv": 4500, "clicks": 170}], "spend": 233981, "conv": 52, "cpconv": 4500, "imp": 19377, "reach": 16771, "clicks": 170, "ctr": 0.88, "cpc": 1376}, {"ad": "Anuncio 7 | Video Promociones Agosto", "campaigns": 1, "parts": [{"campaign": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "sede": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "spend": 129437, "conv": 51, "cpconv": 2538, "clicks": 119}], "spend": 129437, "conv": 51, "cpconv": 2538, "imp": 11946, "reach": 9173, "clicks": 119, "ctr": 1.0, "cpc": 1088}, {"ad": "Anuncio 6 | Video Promociones 2", "campaigns": 3, "parts": [{"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 116601, "conv": 15, "cpconv": 7773, "clicks": 56}, {"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 30662, "conv": 12, "cpconv": 2555, "clicks": 30}, {"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 21254, "conv": 10, "cpconv": 2125, "clicks": 27}], "spend": 168517, "conv": 37, "cpconv": 4555, "imp": 14103, "reach": 12079, "clicks": 113, "ctr": 0.8, "cpc": 1491}, {"ad": "Anuncio 7 | Video Cómo llegar Cedritos", "campaigns": 1, "parts": [{"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 123105, "conv": 36, "cpconv": 3420, "clicks": 104}], "spend": 123105, "conv": 36, "cpconv": 3420, "imp": 9990, "reach": 8338, "clicks": 104, "ctr": 1.04, "cpc": 1184}, {"ad": "Enero - Video General Bulevar", "campaigns": 1, "parts": [{"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 153477, "conv": 35, "cpconv": 4385, "clicks": 107}], "spend": 153477, "conv": 35, "cpconv": 4385, "imp": 10277, "reach": 9077, "clicks": 107, "ctr": 1.04, "cpc": 1434}, {"ad": "FEB 26  Video beneficios mes", "campaigns": 2, "parts": [{"campaign": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "sede": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "spend": 112435, "conv": 31, "cpconv": 3627, "clicks": 56}, {"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 4045, "conv": 2, "cpconv": 2022, "clicks": 2}], "spend": 116480, "conv": 33, "cpconv": 3530, "imp": 8863, "reach": 6949, "clicks": 58, "ctr": 0.65, "cpc": 2008}, {"ad": "Imagen 1 nueva sede", "campaigns": 1, "parts": [{"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 37083, "conv": 19, "cpconv": 1952, "clicks": 46}], "spend": 37083, "conv": 19, "cpconv": 1952, "imp": 4158, "reach": 3603, "clicks": 46, "ctr": 1.11, "cpc": 806}, {"ad": "MAR 26 Anuncio | Video Fisio es para todos - Copia", "campaigns": 3, "parts": [{"campaign": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "sede": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "spend": 59633, "conv": 19, "cpconv": 3139, "clicks": 35}, {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 394, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 379, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 60406, "conv": 19, "cpconv": 3179, "imp": 4021, "reach": 3385, "clicks": 35, "ctr": 0.87, "cpc": 1726}, {"ad": "Imagen 2 Bulevar", "campaigns": 1, "parts": [{"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 95660, "conv": 18, "cpconv": 5314, "clicks": 64}], "spend": 95660, "conv": 18, "cpconv": 5314, "imp": 7267, "reach": 5144, "clicks": 64, "ctr": 0.88, "cpc": 1495}, {"ad": "Imagen 2 nueva sede", "campaigns": 1, "parts": [{"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 95018, "conv": 15, "cpconv": 6335, "clicks": 57}], "spend": 95018, "conv": 15, "cpconv": 6335, "imp": 11050, "reach": 8847, "clicks": 57, "ctr": 0.52, "cpc": 1667}, {"ad": "MAR 26 Anuncio |Video General Mazuren", "campaigns": 2, "parts": [{"campaign": "CO | Av. El Dorado | Ventas Whatsapp - 3114455348", "sede": "Av. El Dorado", "spend": 12071, "conv": 7, "cpconv": 1724, "clicks": 16}, {"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 9917, "conv": 4, "cpconv": 2479, "clicks": 5}], "spend": 21988, "conv": 11, "cpconv": 1999, "imp": 1859, "reach": 1747, "clicks": 21, "ctr": 1.13, "cpc": 1047}, {"ad": "MAR 26 Anuncio | Video Fisio es para todos", "campaigns": 8, "parts": [{"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 12317, "conv": 5, "cpconv": 2463, "clicks": 12}, {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 7000, "conv": 1, "cpconv": 7000, "clicks": 5}, {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 4827, "conv": 0, "cpconv": 0, "clicks": 3}, {"campaign": "CO | Chicó Norte | Ventas Whatsapp - 3235137959", "sede": "Chicó Norte", "spend": 3710, "conv": 1, "cpconv": 3710, "clicks": 4}, {"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 1910, "conv": 0, "cpconv": 0, "clicks": 3}, {"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 1083, "conv": 0, "cpconv": 0, "clicks": 1}, {"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 526, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 93, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 31466, "conv": 7, "cpconv": 4495, "imp": 2030, "reach": 1855, "clicks": 28, "ctr": 1.38, "cpc": 1124}, {"ad": "Anuncio 1 | Video Promociones", "campaigns": 4, "parts": [{"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 13178, "conv": 4, "cpconv": 3294, "clicks": 8}, {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 11992, "conv": 1, "cpconv": 11992, "clicks": 4}, {"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 4109, "conv": 1, "cpconv": 4109, "clicks": 4}, {"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 2676, "conv": 0, "cpconv": 0, "clicks": 2}], "spend": 31955, "conv": 6, "cpconv": 5326, "imp": 1455, "reach": 1316, "clicks": 18, "ctr": 1.24, "cpc": 1775}, {"ad": "Enero - Video General Carmel", "campaigns": 1, "parts": [{"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 13961, "conv": 4, "cpconv": 3490, "clicks": 14}], "spend": 13961, "conv": 4, "cpconv": 3490, "imp": 940, "reach": 899, "clicks": 14, "ctr": 1.49, "cpc": 997}, {"ad": "Anuncio 2 | Imagen Promos", "campaigns": 3, "parts": [{"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 16937, "conv": 4, "cpconv": 4234, "clicks": 15}, {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 6201, "conv": 0, "cpconv": 0, "clicks": 7}, {"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 3085, "conv": 0, "cpconv": 0, "clicks": 3}], "spend": 26223, "conv": 4, "cpconv": 6556, "imp": 1796, "reach": 1623, "clicks": 25, "ctr": 1.39, "cpc": 1049}, {"ad": "Carrusel | nueva sede salitre", "campaigns": 1, "parts": [{"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 10550, "conv": 4, "cpconv": 2638, "clicks": 11}], "spend": 10550, "conv": 4, "cpconv": 2638, "imp": 1169, "reach": 1021, "clicks": 11, "ctr": 0.94, "cpc": 959}, {"ad": "| Video Promociones general", "campaigns": 2, "parts": [{"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 5841, "conv": 3, "cpconv": 1947, "clicks": 6}, {"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 1706, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 7547, "conv": 3, "cpconv": 2516, "imp": 493, "reach": 467, "clicks": 6, "ctr": 1.22, "cpc": 1258}, {"ad": "Enero -Video General Sta Barbara", "campaigns": 1, "parts": [{"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 2946, "conv": 3, "cpconv": 982, "clicks": 3}], "spend": 2946, "conv": 3, "cpconv": 982, "imp": 159, "reach": 155, "clicks": 3, "ctr": 1.89, "cpc": 982}, {"ad": "Anuncio 8 | Video Promociones agosto", "campaigns": 3, "parts": [{"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 8064, "conv": 0, "cpconv": 0, "clicks": 2}, {"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 4967, "conv": 2, "cpconv": 2484, "clicks": 4}, {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 1043, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 14074, "conv": 2, "cpconv": 7037, "imp": 938, "reach": 857, "clicks": 6, "ctr": 0.64, "cpc": 2346}, {"ad": "Video 2 nueva sede", "campaigns": 1, "parts": [{"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 16610, "conv": 2, "cpconv": 8305, "clicks": 8}], "spend": 16610, "conv": 2, "cpconv": 8305, "imp": 1597, "reach": 1336, "clicks": 8, "ctr": 0.5, "cpc": 2076}, {"ad": "OCT Anuncio 8 | Imagen", "campaigns": 8, "parts": [{"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 5759, "conv": 1, "cpconv": 5759, "clicks": 7}, {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 4016, "conv": 0, "cpconv": 0, "clicks": 2}, {"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 3483, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 3447, "conv": 1, "cpconv": 3447, "clicks": 2}, {"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 2637, "conv": 0, "cpconv": 0, "clicks": 1}, {"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 1305, "conv": 0, "cpconv": 0, "clicks": 1}, {"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 648, "conv": 0, "cpconv": 0, "clicks": 1}, {"campaign": "CO | Chicó Norte | Ventas Whatsapp - 3235137959", "sede": "Chicó Norte", "spend": 194, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 21489, "conv": 2, "cpconv": 10744, "imp": 1416, "reach": 1334, "clicks": 14, "ctr": 0.99, "cpc": 1535}, {"ad": "FEB 26 -Video General Cedritos", "campaigns": 1, "parts": [{"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 7616, "conv": 2, "cpconv": 3808, "clicks": 3}], "spend": 7616, "conv": 2, "cpconv": 3808, "imp": 433, "reach": 393, "clicks": 3, "ctr": 0.69, "cpc": 2539}, {"ad": "Video lanzamient4 - ¿como llegar a bulevar?", "campaigns": 1, "parts": [{"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 9034, "conv": 2, "cpconv": 4517, "clicks": 2}], "spend": 9034, "conv": 2, "cpconv": 4517, "imp": 542, "reach": 499, "clicks": 2, "ctr": 0.37, "cpc": 4517}, {"ad": "ABR 26 Anuncio | Video DOLOR", "campaigns": 10, "parts": [{"campaign": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "sede": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "spend": 9048, "conv": 0, "cpconv": 0, "clicks": 4}, {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 3204, "conv": 1, "cpconv": 3204, "clicks": 2}, {"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 3109, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Chicó Norte | Ventas Whatsapp - 3235137959", "sede": "Chicó Norte", "spend": 1720, "conv": 0, "cpconv": 0, "clicks": 2}, {"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 1692, "conv": 1, "cpconv": 1692, "clicks": 1}, {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 1315, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 1098, "conv": 0, "cpconv": 0, "clicks": 2}, {"campaign": "CO | Av. El Dorado | Ventas Whatsapp - 3114455348", "sede": "Av. El Dorado", "spend": 649, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 372, "conv": 0, "cpconv": 0, "clicks": 1}, {"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 57, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 22264, "conv": 2, "cpconv": 11132, "imp": 1255, "reach": 1144, "clicks": 12, "ctr": 0.96, "cpc": 1855}, {"ad": "FEB 26 -Video General Contador", "campaigns": 1, "parts": [{"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 3698, "conv": 2, "cpconv": 1849, "clicks": 2}], "spend": 3698, "conv": 2, "cpconv": 1849, "imp": 243, "reach": 223, "clicks": 2, "ctr": 0.82, "cpc": 1849}, {"ad": "Anuncio 2 | Carrusel Promos", "campaigns": 1, "parts": [{"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 3075, "conv": 1, "cpconv": 3075, "clicks": 2}], "spend": 3075, "conv": 1, "cpconv": 3075, "imp": 122, "reach": 98, "clicks": 2, "ctr": 1.64, "cpc": 1538}, {"ad": "Anuncio 7 | Video Promociones", "campaigns": 2, "parts": [{"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 4750, "conv": 0, "cpconv": 0, "clicks": 2}, {"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 1909, "conv": 1, "cpconv": 1909, "clicks": 2}], "spend": 6659, "conv": 1, "cpconv": 6659, "imp": 329, "reach": 307, "clicks": 4, "ctr": 1.22, "cpc": 1665}, {"ad": "Video Promociones general", "campaigns": 3, "parts": [{"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 1776, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 345, "conv": 1, "cpconv": 345, "clicks": 1}, {"campaign": "CO | Chicó Norte | Ventas Whatsapp - 3235137959", "sede": "Chicó Norte", "spend": 252, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 2373, "conv": 1, "cpconv": 2373, "imp": 108, "reach": 101, "clicks": 1, "ctr": 0.93, "cpc": 2373}, {"ad": "Video promociones general", "campaigns": 1, "parts": [{"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 6120, "conv": 1, "cpconv": 6120, "clicks": 2}], "spend": 6120, "conv": 1, "cpconv": 6120, "imp": 342, "reach": 314, "clicks": 2, "ctr": 0.58, "cpc": 3060}, {"ad": "Enero -Video General Salitre", "campaigns": 1, "parts": [{"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 14602, "conv": 1, "cpconv": 14602, "clicks": 5}], "spend": 14602, "conv": 1, "cpconv": 14602, "imp": 1293, "reach": 1210, "clicks": 5, "ctr": 0.39, "cpc": 2920}, {"ad": "FEB 26 -Carrusel General Cedritos", "campaigns": 1, "parts": [{"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 6362, "conv": 0, "cpconv": 0, "clicks": 3}], "spend": 6362, "conv": 0, "cpconv": 0, "imp": 415, "reach": 394, "clicks": 3, "ctr": 0.72, "cpc": 2121}, {"ad": "Anuncio 3 | Carrusel Promos", "campaigns": 6, "parts": [{"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 10889, "conv": 0, "cpconv": 0, "clicks": 9}, {"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 4612, "conv": 0, "cpconv": 0, "clicks": 2}, {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 3670, "conv": 0, "cpconv": 0, "clicks": 6}, {"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 1893, "conv": 0, "cpconv": 0, "clicks": 1}, {"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 1584, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Chicó Norte | Ventas Whatsapp - 3235137959", "sede": "Chicó Norte", "spend": 1491, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 24139, "conv": 0, "cpconv": 0, "imp": 1084, "reach": 966, "clicks": 18, "ctr": 1.66, "cpc": 1341}, {"ad": "Anuncio  | video como llegar sede cedro golf", "campaigns": 1, "parts": [{"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 4644, "conv": 0, "cpconv": 0, "clicks": 3}], "spend": 4644, "conv": 0, "cpconv": 0, "imp": 206, "reach": 178, "clicks": 3, "ctr": 1.46, "cpc": 1548}, {"ad": "FEB 26 -Carrusel General cedro golf", "campaigns": 1, "parts": [{"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 2055, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 2055, "conv": 0, "cpconv": 0, "imp": 114, "reach": 110, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "MAR 26 Anuncio | Video Dolor", "campaigns": 2, "parts": [{"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 1122, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 324, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 1446, "conv": 0, "cpconv": 0, "imp": 71, "reach": 67, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "FEB 26 -Video General Calle 119", "campaigns": 1, "parts": [{"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 3469, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 3469, "conv": 0, "cpconv": 0, "imp": 186, "reach": 177, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "Anuncio 3 | Imagen Promos", "campaigns": 1, "parts": [{"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 1094, "conv": 0, "cpconv": 0, "clicks": 1}], "spend": 1094, "conv": 0, "cpconv": 0, "imp": 76, "reach": 73, "clicks": 1, "ctr": 1.32, "cpc": 1094}, {"ad": "FEB 26 -Carrusel General Calle 119", "campaigns": 1, "parts": [{"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 985, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 985, "conv": 0, "cpconv": 0, "imp": 65, "reach": 62, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "Video Cómo llegar", "campaigns": 1, "parts": [{"campaign": "CO | Av. El Dorado | Ventas Whatsapp - 3114455348", "sede": "Av. El Dorado", "spend": 5442, "conv": 0, "cpconv": 0, "clicks": 2}], "spend": 5442, "conv": 0, "cpconv": 0, "imp": 541, "reach": 498, "clicks": 2, "ctr": 0.37, "cpc": 2721}, {"ad": "FEB 26 -Carrusel General contador", "campaigns": 1, "parts": [{"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 1222, "conv": 0, "cpconv": 0, "clicks": 1}], "spend": 1222, "conv": 0, "cpconv": 0, "imp": 81, "reach": 81, "clicks": 1, "ctr": 1.23, "cpc": 1222}, {"ad": "Anuncio 6 | Video Cómo llegar Contador", "campaigns": 1, "parts": [{"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 3480, "conv": 0, "cpconv": 0, "clicks": 1}], "spend": 3480, "conv": 0, "cpconv": 0, "imp": 260, "reach": 240, "clicks": 1, "ctr": 0.38, "cpc": 3480}, {"ad": "FEB 26 -Video General Carmel", "campaigns": 1, "parts": [{"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 613, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 613, "conv": 0, "cpconv": 0, "imp": 32, "reach": 29, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "FEB 26 -Carrusel General Chico", "campaigns": 1, "parts": [{"campaign": "CO | Chicó Norte | Ventas Whatsapp - 3235137959", "sede": "Chicó Norte", "spend": 559, "conv": 0, "cpconv": 0, "clicks": 1}], "spend": 559, "conv": 0, "cpconv": 0, "imp": 52, "reach": 49, "clicks": 1, "ctr": 1.92, "cpc": 559}, {"ad": "Video Promociones General", "campaigns": 2, "parts": [{"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 646, "conv": 0, "cpconv": 0, "clicks": 0}, {"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 372, "conv": 0, "cpconv": 0, "clicks": 1}], "spend": 1018, "conv": 0, "cpconv": 0, "imp": 58, "reach": 54, "clicks": 1, "ctr": 1.72, "cpc": 1018}, {"ad": "FEB 26 -Video General Santa bárbara", "campaigns": 1, "parts": [{"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 141, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 141, "conv": 0, "cpconv": 0, "imp": 14, "reach": 13, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "Video | Sede aesthetic", "campaigns": 1, "parts": [{"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 1177, "conv": 0, "cpconv": 0, "clicks": 1}], "spend": 1177, "conv": 0, "cpconv": 0, "imp": 96, "reach": 88, "clicks": 1, "ctr": 1.04, "cpc": 1177}, {"ad": "FEB 26 -Video General Salitre", "campaigns": 1, "parts": [{"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 120, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 120, "conv": 0, "cpconv": 0, "imp": 7, "reach": 6, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "FEB 26 -Carrusel General contador - Copia", "campaigns": 1, "parts": [{"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 229, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 229, "conv": 0, "cpconv": 0, "imp": 21, "reach": 21, "clicks": 0, "ctr": 0.0, "cpc": 0}, {"ad": "Video | cómo llegar Salitre", "campaigns": 1, "parts": [{"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 7640, "conv": 0, "cpconv": 0, "clicks": 5}], "spend": 7640, "conv": 0, "cpconv": 0, "imp": 678, "reach": 615, "clicks": 5, "ctr": 0.74, "cpc": 1528}, {"ad": "FEB 26 -Carrusel General carmel", "campaigns": 1, "parts": [{"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 37, "conv": 0, "cpconv": 0, "clicks": 0}], "spend": 37, "conv": 0, "cpconv": 0, "imp": 6, "reach": 6, "clicks": 0, "ctr": 0.0, "cpc": 0}]}, "prev_totals": {"spend": 1715023, "conv": 410, "imp": 131546, "clicks": 1119, "campaigns": 12, "ads": 112, "cpconv": 4183, "cpc": 1533, "ctr": 0.85, "reach": 77852, "freq": 1.69}, "prev_campaigns": {"CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583": {"campaign": "CO | Colina - Mazuren | Ventas Whatsapp ‪- 320 8174583", "sede": "Colina - Mazuren", "spend": 176415, "conv": 31, "cpconv": 5691, "imp": 15928, "reach": 11861, "clicks": 81, "cpc": 2178, "ctr": 0.51, "freq": 1.34, "ads": 8, "sets": 1, "below_q": 0, "tot_q": 8, "below_ctr": 0, "below_cvr": 0}, "CO | Ventas Whatsapp | Remarketing 311 647 7233": {"campaign": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "sede": "CO | Ventas Whatsapp | Remarketing 311 647 7233", "spend": 145042, "conv": 34, "cpconv": 4266, "imp": 12360, "reach": 7810, "clicks": 144, "cpc": 1007, "ctr": 1.17, "freq": 1.58, "ads": 7, "sets": 1, "below_q": 0, "tot_q": 7, "below_ctr": 0, "below_cvr": 0}, "CO | Av. El Dorado | Ventas Whatsapp - 3114455348": {"campaign": "CO | Av. El Dorado | Ventas Whatsapp - 3114455348", "sede": "Av. El Dorado", "spend": 142112, "conv": 50, "cpconv": 2842, "imp": 12338, "reach": 9889, "clicks": 113, "cpc": 1258, "ctr": 0.92, "freq": 1.25, "ads": 6, "sets": 1, "below_q": 0, "tot_q": 6, "below_ctr": 0, "below_cvr": 0}, "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -": {"campaign": "CO | Cedritos | Ventas Whatsapp ‪323 5213734‬ -", "sede": "Cedritos", "spend": 141448, "conv": 32, "cpconv": 4420, "imp": 8916, "reach": 8312, "clicks": 81, "cpc": 1746, "ctr": 0.91, "freq": 1.07, "ads": 18, "sets": 2, "below_q": 0, "tot_q": 18, "below_ctr": 0, "below_cvr": 1}, "CO | El Carmel | Ventas Whatsapp - 3204040149": {"campaign": "CO | El Carmel | Ventas Whatsapp - 3204040149", "sede": "El Carmel", "spend": 141365, "conv": 40, "cpconv": 3534, "imp": 12847, "reach": 11901, "clicks": 86, "cpc": 1644, "ctr": 0.67, "freq": 1.08, "ads": 6, "sets": 1, "below_q": 0, "tot_q": 6, "below_ctr": 0, "below_cvr": 1}, "CO | Bulevar | Ventas Whatsapp  3108633424": {"campaign": "CO | Bulevar | Ventas Whatsapp  3108633424", "sede": "Bulevar", "spend": 141111, "conv": 32, "cpconv": 4410, "imp": 13366, "reach": 10154, "clicks": 114, "cpc": 1238, "ctr": 0.85, "freq": 1.32, "ads": 12, "sets": 1, "below_q": 0, "tot_q": 12, "below_ctr": 0, "below_cvr": 2}, "CO | Ventas Whatsapp | Sede Calle 119 3235115682": {"campaign": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "sede": "CO | Ventas Whatsapp | Sede Calle 119 3235115682", "spend": 140291, "conv": 31, "cpconv": 4526, "imp": 6595, "reach": 5178, "clicks": 62, "cpc": 2263, "ctr": 0.94, "freq": 1.27, "ads": 7, "sets": 1, "below_q": 0, "tot_q": 7, "below_ctr": 0, "below_cvr": 1}, "CO | Cedro Golf | Ventas Whatsapp 3204133677": {"campaign": "CO | Cedro Golf | Ventas Whatsapp 3204133677", "sede": "Cedro Golf", "spend": 139750, "conv": 23, "cpconv": 6076, "imp": 11735, "reach": 10351, "clicks": 77, "cpc": 1815, "ctr": 0.66, "freq": 1.13, "ads": 12, "sets": 1, "below_q": 0, "tot_q": 12, "below_ctr": 0, "below_cvr": 1}, "CO | El Contador | Ventas Whatsapp 3204049016": {"campaign": "CO | El Contador | Ventas Whatsapp 3204049016", "sede": "El Contador", "spend": 138001, "conv": 32, "cpconv": 4313, "imp": 7906, "reach": 7180, "clicks": 82, "cpc": 1683, "ctr": 1.04, "freq": 1.1, "ads": 13, "sets": 1, "below_q": 0, "tot_q": 13, "below_ctr": 0, "below_cvr": 1}, "CO | Chicó Norte | Ventas Whatsapp - 3235137959": {"campaign": "CO | Chicó Norte | Ventas Whatsapp - 3235137959", "sede": "Chicó Norte", "spend": 136750, "conv": 50, "cpconv": 2735, "imp": 8054, "reach": 5952, "clicks": 114, "cpc": 1200, "ctr": 1.42, "freq": 1.35, "ads": 5, "sets": 1, "below_q": 0, "tot_q": 5, "below_ctr": 0, "below_cvr": 1}, "CO | Ventas Whatsapp | Santa Bárbara - 3227685819": {"campaign": "CO | Ventas Whatsapp | Santa Bárbara - 3227685819", "sede": "Santa Bárbara", "spend": 136616, "conv": 28, "cpconv": 4879, "imp": 10694, "reach": 9647, "clicks": 99, "cpc": 1380, "ctr": 0.93, "freq": 1.11, "ads": 10, "sets": 1, "below_q": 0, "tot_q": 10, "below_ctr": 0, "below_cvr": 1}, "CO | Salitre | Ventas Whatsapp - 3222415254": {"campaign": "CO | Salitre | Ventas Whatsapp - 3222415254", "sede": "Salitre", "spend": 136122, "conv": 27, "cpconv": 5042, "imp": 10807, "reach": 9073, "clicks": 66, "cpc": 2062, "ctr": 0.61, "freq": 1.19, "ads": 8, "sets": 1, "below_q": 0, "tot_q": 8, "below_ctr": 0, "below_cvr": 0}}, "trend": [{"label": "29 jun–5 jul", "spend": 1659106, "conv": 433, "cpconv": 3832, "reach": 61159, "clicks": 1169, "imp": 127448, "ctr": 0.92}, {"label": "6–12 jul", "spend": 1743999, "conv": 486, "cpconv": 3588, "reach": 75473, "clicks": 1153, "imp": 146220, "ctr": 0.79}, {"label": "13–19 jul", "spend": 1735172, "conv": 536, "cpconv": 3237, "reach": 90849, "clicks": 1476, "imp": 181503, "ctr": 0.81}, {"label": "20–26 jul", "spend": 1682493, "conv": 511, "cpconv": 3293, "reach": 70064, "clicks": 1251, "imp": 153377, "ctr": 0.82}, {"label": "27 jul–2 ago", "spend": 1762153, "conv": 525, "cpconv": 3356, "reach": 69807, "clicks": 1213, "imp": 130869, "ctr": 0.93}, {"label": "3–9 ago", "spend": 1733574, "conv": 485, "cpconv": 3574, "reach": 65333, "clicks": 1129, "imp": 119931, "ctr": 0.94}, {"label": "10–16 ago", "spend": 1620877, "conv": 426, "cpconv": 3805, "reach": 89993, "clicks": 1132, "imp": 154787, "ctr": 0.73}, {"label": "17–23 ago", "spend": 1715023, "conv": 410, "cpconv": 4183, "reach": 77852, "clicks": 1119, "imp": 131546, "ctr": 0.85}, {"label": "24–30 ago", "spend": 1699166, "conv": 451, "cpconv": 3768, "reach": 78596, "clicks": 1214, "imp": 143145, "ctr": 0.85}]};
-const NF = new Intl.NumberFormat('es-CO');
-const COP = n => NF.format(Math.round(n));
-const money = n => '<span class="cur">COP</span>' + COP(n);
-const K = n => n>=1000 ? (n/1000).toFixed(n>=10000?0:1)+'k' : String(n);
+const C = DATA.compare;
+let CUR = DATA.cur;
+const shown = DATA.periods_shown.filter(id => DATA.nbb.periods[id]);
+const BASE = C.trad_baseline;
 
-let CUR = 'w9';
-
-function scoreCampaign(c, avg){
-  let score=0; const reasons=[];
-  const ratio=c.cpconv/avg;
-  if(ratio>=1.6){score+=3;reasons.push(['bad',`Costo por conversación ${Math.round((ratio-1)*100)}% sobre el promedio`]);}
-  else if(ratio>=1.2){score+=2;reasons.push(['warn','Costo por conversación por encima del promedio']);}
-  else if(ratio<=0.8){reasons.push(['good',`Costo por conversación ${Math.round((1-ratio)*100)}% bajo el promedio`]);}
-  if(c.below_q>0){score+=Math.min(c.below_q,3);reasons.push(['warn',`${c.below_q} anuncio(s) con calidad por debajo del promedio`]);}
-  if(c.below_cvr>0){score+=1;reasons.push(['warn',`${c.below_cvr} anuncio(s) con conversión débil`]);}
-  if(c.freq>=1.8){score+=1;reasons.push(['warn',`Frecuencia alta (${c.freq}) — posible fatiga`]);}
-  if(c.sets>1){reasons.push(['info',`${c.sets} conjuntos — revisar solapamiento de público`]);}
-  if(c.conv<20){score+=1;reasons.push(['warn',`Volumen bajo de conversaciones (${c.conv})`]);}
-  return {score, level: score>=4?'r':score>=2?'y':'g', reasons};
+function pair(id) {
+  if (id === 'acc') return { trad: C.trad_window, nbb: DATA.nbb.periods.acc.totals, label: C.window.label, start: C.window.start, end: C.window.end, weeks: C.window.weeks };
+  const w = DATA.weeks.find(w => w.id === id);
+  return { trad: DATA.trad.periods[id].totals, nbb: DATA.nbb.periods[id].totals, label: w.label, start: w.start, end: w.end, weeks: 1 };
 }
-
-function pct(now, prev){
-  if(prev===0||prev==null) return null;
-  return (now/prev-1)*100;
+function winBadge(nbbVal, tradVal, lowerIsBetter) {
+  const d = pct(nbbVal, tradVal); if (d === null) return '';
+  const good = lowerIsBetter ? d < 0 : d > 0;
+  const cls = Math.abs(d) < 2 ? 'flat' : (good ? 'up' : 'down');
+  return `<span class="win ${cls}">${d > 0 ? '+' : ''}${d.toFixed(0)}% vs trad.</span>`;
 }
-function deltaHTML(now, prev, lowerIsBetter){
-  const d = pct(now, prev);
-  if(d===null) return '';
-  const good = lowerIsBetter ? d<0 : d>0;
-  const cls = Math.abs(d)<1 ? 'flat' : (good ? 'up':'down');
-  const arrow = Math.abs(d)<1 ? '→' : (d>0?'▲':'▼');
-  return `<span class="delta ${cls}">${arrow} ${Math.abs(d).toFixed(1)}% vs sem. previa</span>`;
+function baseBadge(val, baseVal, lowerIsBetter) {
+  const d = pct(val, baseVal); if (d === null) return '';
+  const good = lowerIsBetter ? d < 0 : d > 0;
+  const cls = Math.abs(d) < 2 ? 'flat' : (good ? 'up' : 'down');
+  return `<span class="win ${cls}">${d > 0 ? '+' : ''}${d.toFixed(0)}% vs hist.</span>`;
 }
-
-function renderKPIs(){
-  const d = P[CUR], t = d.totals;
-  const prev = (CUR==='w9') ? P.prev_totals : null;   // deltas only meaningful for the weekly view
-  const kpis=[
-    {label:'Inversión total', val:money(t.spend), foot:t.campaigns+' campañas · '+t.ads+' anuncios',
-     delta: prev?deltaHTML(t.spend, prev.spend, false):''},
-    {label:'Conversaciones WA', val:COP(t.conv), foot:money(t.cpconv)+' por conversación', star:true,
-     delta: prev?deltaHTML(t.conv, prev.conv, false):''},
-    {label:'Alcance', val:COP(t.reach), foot:'personas únicas · frec. '+t.freq, tag:'Informes de Meta',
-     delta: prev?deltaHTML(t.reach, prev.reach, false):''},
-    {label:'Clics en el enlace', val:COP(t.clicks), foot:t.ctr+'% CTR',
-     delta: prev?deltaHTML(t.clicks, prev.clicks, false):''},
-    {label:'CPC promedio', val:money(t.cpc), foot:'costo por clic',
-     delta: prev?deltaHTML(t.cpc, prev.cpc, true):''},
-    {label:'Costo / conversación', val:money(t.cpconv), foot:'métrica principal', star:true,
-     delta: prev?deltaHTML(t.cpconv, prev.cpconv, true):''},
-  ];
-  document.getElementById('kpis').innerHTML=kpis.map(k=>`
-    <div class="kpi ${k.star?'star':''}"><div class="label">${k.label}</div>
-    <div class="val">${k.val}</div><div class="foot">${k.foot}</div>
-    ${k.tag?`<span class="tag">${k.tag}</span>`:''}${k.delta||''}</div>`).join('');
-  document.getElementById('winlabel').textContent = d.start+' → '+d.end;
-  document.getElementById('scopeNote').textContent =
-    (CUR==='acc'
-      ? 'Acumulado de nueve semanas (29 jun – 30 ago). El alcance es deduplicado por Meta: 318.722 personas únicas, menor que la suma de las nueve semanas (679.126) porque 360.404 personas fueron alcanzadas en más de una. '
-      : 'Semana del 24 al 30 de agosto, comparada contra la semana previa (17 – 23 ago). ')
-    + 'Todas las conversaciones son «Conversaciones con mensajes iniciadas» (WhatsApp). Cifras en COP. El alcance por sede/anuncio es aproximado.';
-}
-
-function freqColor(f){return f>=1.8?'var(--red)':f>=1.5?'var(--yellow)':'var(--teal)';}
-function adviceFor(c){
-  const r=c._reasons.find(x=>x[0]==='bad')||c._reasons.find(x=>x[0]==='warn')||c._reasons.find(x=>x[0]==='good')||c._reasons[0];
-  const icon=c._level==='r'?'🔴':c._level==='y'?'🟡':'🟢';
-  let msg;
-  if(c._level==='r') msg=`<b>Actuar ya.</b> ${r?r[1]:''}. Revisa creativos y segmentación de esta sede.`;
-  else if(c._level==='y') msg=`<b>Vigilar.</b> ${r?r[1]:''}. Margen de optimización en creativo o público.`;
-  else msg=`<b>Estable.</b> ${r?r[1]:'Rinde en línea o mejor que el promedio'}. Mantener y usar como referencia.`;
-  return icon+'||'+msg;
-}
-function cmpRow(c){
-  if(CUR!=='w9') return '';
-  const prev = P.prev_campaigns[c.campaign];
-  if(!prev) return '';
-  const dc = pct(c.conv, prev.conv), dk = pct(c.cpconv, prev.cpconv);
-  const f=(v,lower)=>{
-    if(v===null) return '<b class="flat">—</b>';
-    const good = lower ? v<0 : v>0;
-    const cls = Math.abs(v)<1?'flat':(good?'up':'down');
-    return `<b class="${cls}">${v>0?'+':''}${v.toFixed(0)}%</b>`;
-  };
-  return `<div class="cmp"><span>vs sem. previa:</span> <span>conv ${f(dc,false)}</span> <span>costo/conv ${f(dk,true)}</span></div>`;
-}
-function cardHTML(c){
-  const fpct=Math.min(c.freq/2.5*100,100);
-  const lvlTxt=c._level==='r'?'ACTUAR YA':c._level==='y'?'VIGILAR':'ESTABLE';
-  const adv=adviceFor(c).split('||');
-  return `<div class="card ${c._level}">
-    <div class="top"><div><div class="acct">FisioPilates · sede</div><div class="cname">${c.sede}</div></div>
-    <div class="badges"><span class="pill ${c._level}">${lvlTxt}</span>${c.sets>1?`<span class="pill y">${c.sets} CONJUNTOS</span>`:''}</div></div>
-    <div class="hero-metric"><span class="big">${c.conv}</span><span class="cap">conversaciones<br>WhatsApp</span>
-    <span class="cost"><b>${money(c.cpconv)}</b><span>por conversación</span></span></div>
-    ${cmpRow(c)}
-    <div class="stats">
-      <div class="stat"><div class="k">Inversión</div><div class="v">${money(c.spend)}</div></div>
-      <div class="stat"><div class="k">CTR</div><div class="v">${c.ctr}%</div></div>
-      <div class="stat"><div class="k">CPC</div><div class="v">${money(c.cpc)}</div></div>
-      <div class="stat"><div class="k">Alcance</div><div class="v">${COP(c.reach)}<span class="ap">aprox.</span></div></div>
-      <div class="stat"><div class="k">Impres.</div><div class="v">${COP(c.imp)}</div></div>
-      <div class="stat"><div class="k">Clics</div><div class="v">${c.clicks}</div></div>
-    </div>
-    <div class="freqrow"><div class="flabel"><span>Frecuencia (aprox.)</span><span>${c.freq}</span></div>
-    <div class="fbar"><i style="width:${fpct}%;background:${freqColor(c.freq)}"></i></div></div>
-    <div class="advice"><span class="dot">${adv[0]}</span><span>${adv[1]}</span></div>
-  </div>`;
-}
-
-function adCardHTML(a){
-  const multi=a.campaigns>1;
-  let breakdown='';
-  if(multi){
-    breakdown=`<div class="breakdown"><div class="bh">Detalle por campaña (${a.campaigns} sedes)</div>`+
-      a.parts.map(p=>`<div class="brow">
-        <div><div class="bsede">${p.sede}</div><div class="bsub">${money(p.spend)} · ${p.clicks} clics</div></div>
-        <div class="bconv">${p.conv}<div class="bsub" style="color:var(--faint)">conv</div></div>
-        <div class="bcost">${p.conv?money(p.cpconv):'—'}<div class="bsub">c/conv</div></div>
-      </div>`).join('')+`</div>`;
-  } else {
-    breakdown=`<div class="single-note">Campaña: ${a.parts[0].sede}</div>`;
+function reachRow(t, kind) {
+  if (t.reach == null) {
+    const why = (kind === 'trad' && CUR === 'acc') ? 'sin dato para la ventana común' : 'pendiente';
+    return `<div class="mrow"><div class="k">Alcance deduplicado<small>Meta Informes</small></div><div class="v"><span class="pendtag">${why}</span></div></div>`;
   }
-  return `<div class="adcard">
-    <div class="atop"><div class="aname">${a.ad}</div>
-    ${multi?`<span class="pill y">×${a.campaigns} SEDES</span>`:''}</div>
-    <div class="ameta">${multi?'Anuncio compartido':'Anuncio único'} · ${money(a.spend)} invertidos</div>
-    <div class="adhero"><span class="big">${a.conv}</span><span class="cap">conversaciones<br>WhatsApp</span>
-    <span class="cost"><b>${a.conv?money(a.cpconv):'—'}</b><span>por conversación</span></span></div>
-    <div class="stats">
-      <div class="stat"><div class="k">CTR</div><div class="v">${a.ctr}%</div></div>
-      <div class="stat"><div class="k">CPC</div><div class="v">${money(a.cpc)}</div></div>
-      <div class="stat"><div class="k">Clics</div><div class="v">${a.clicks}</div></div>
-      <div class="stat"><div class="k">Alcance</div><div class="v">${COP(a.reach)}<span class="ap">aprox.</span></div></div>
-      <div class="stat"><div class="k">Impres.</div><div class="v">${COP(a.imp)}</div></div>
-      <div class="stat"><div class="k">Inversión</div><div class="v">${K(a.spend)}</div></div>
-    </div>
-    ${breakdown}
+  return `<div class="mrow"><div class="k">Alcance deduplicado<small>Meta Informes · frecuencia ${t.freq}</small></div><div class="v">${COP(t.reach)}</div></div>`;
+}
+function colHTML(kind, t, other) {
+  const isN = kind === 'nbb';
+  const b = (nv, tv, lower) => isN ? winBadge(nv, tv, lower) : '';
+  const bb = (v, bv, lower) => !isN ? baseBadge(v, bv, lower) : '';
+  return `<div class="col ${kind}">
+    <div class="ch"><div><div class="nm">${isN ? 'Estrategia NBB' : 'Pauta tradicional'}</div><div class="ds">${isN ? '3 campañas por audiencia · 33 conjuntos (11 sedes × 3) · desde el 31 ago' : '12 campañas por sede · pauta previa a la gestión NBB'}</div></div>
+      <span class="pill ${isN ? 'a' : 't'}">${t.campaigns} CAMP · ${t.ads} ANUNCIOS</span></div>
+    <div class="hero"><span class="big">${COP(t.conv)}</span><span class="cap">conversaciones<br>WhatsApp</span>
+      <span class="cost"><b>${money(t.cpconv)} ${b(t.cpconv, other.cpconv, true)}${bb(t.cpconv, BASE.cpconv, true)}</b><span>por conversación</span></span></div>
+    <div class="mrow"><div class="k">Inversión</div><div class="v">${money(t.spend)} ${b(t.spend, other.spend, false).replace(/class="win \w+"/, 'class="win flat"')}</div></div>
+    <div class="mrow"><div class="k">Conversaciones por cada COP 100.000<small>normaliza presupuestos distintos</small></div><div class="v">${t.conv_per_100k.toFixed(1)} ${b(t.conv_per_100k, other.conv_per_100k, false)}${bb(t.conv_per_100k, BASE.conv_per_100k, false)}</div></div>
+    <div class="mrow"><div class="k">CTR (clics en el enlace / impresiones)</div><div class="v">${t.ctr}% ${b(t.ctr, other.ctr, false)}${bb(t.ctr, BASE.ctr, false)}</div></div>
+    <div class="mrow"><div class="k">CPC</div><div class="v">${money(t.cpc)} ${b(t.cpc, other.cpc, true)}${bb(t.cpc, BASE.cpc, true)}</div></div>
+    <div class="mrow"><div class="k">CPM</div><div class="v">${money(t.cpm)} ${b(t.cpm, other.cpm, true)}${bb(t.cpm, BASE.cpm, true)}</div></div>
+    <div class="mrow"><div class="k">Clics en el enlace</div><div class="v">${COP(t.clicks)}</div></div>
+    <div class="mrow"><div class="k">Impresiones</div><div class="v">${COP(t.imp)}</div></div>
+    ${reachRow(t, kind)}
   </div>`;
 }
 
-
-function renderTrend(){
-  const T = P.trend;
-  const maxConv = Math.max(...T.map(t=>t.conv));
-  const maxCost = Math.max(...T.map(t=>t.cpconv));
-  const el = document.getElementById('trendBars');
-  document.getElementById('trendTitle').textContent = 'Tendencia · '+T.length+' semanas';
-  el.innerHTML = T.map((t,i)=>{
-    const convH = Math.round(t.conv/maxConv*70)+8;
-    const prev = i>0 ? T[i-1] : null;
-    const dConv = prev ? ((t.conv/prev.conv-1)*100) : null;
-    const dCost = prev ? ((t.cpconv/prev.cpconv-1)*100) : null;
-    const convTag = dConv===null ? '' : `<span style="color:${dConv>0?'var(--green)':'var(--red)'};font-weight:700">${dConv>0?'+':''}${dConv.toFixed(0)}%</span>`;
-    const costTag = dCost===null ? '' : `<span style="color:${dCost<0?'var(--green)':'var(--red)'};font-weight:700">${dCost>0?'+':''}${dCost.toFixed(0)}%</span>`;
-    const isLast = i===T.length-1;
-    return `<div class="tbar" style="text-align:center">
-      <div style="height:98px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:8px">
-        <div style="width:60%;max-width:56px;min-width:38px;height:${convH}px;background:${isLast?'var(--teal)':'var(--teal-dim,#134e4a)'};border-radius:6px 6px 0 0;position:relative">
-          <span style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink)">${t.conv}</span>
-        </div>
-      </div>
-      <div style="font-family:var(--mono);font-size:10px;color:${isLast?'var(--ink)':'var(--muted)'};margin-bottom:6px">${t.label}</div>
-      <div style="font-size:10px;color:var(--faint);line-height:1.5">
-        <div>conv ${convTag||'<span style=\'color:var(--faint)\'>base</span>'}</div>
-        <div>costo/conv <span class="cur" style="font-size:9px">COP</span>${NF.format(t.cpconv)} ${costTag}</div>
-      </div>
-    </div>`;
-  }).join('');
+function verdictHTML(p) {
+  const t = p.trad, n = p.nbb;
+  const dCost = pct(n.cpconv, t.cpconv), dBase = pct(n.cpconv, BASE.cpconv), dCtr = pct(n.ctr, t.ctr);
+  const share = n.spend / (n.spend + t.spend) * 100, cshare = n.conv / (n.conv + t.conv) * 100;
+  const lead = dCost < -2 ? `<b>La estrategia NBB convierte más barato</b>: ${money(n.cpconv)} por conversación frente a ${money(t.cpconv)} de la pauta tradicional (${Math.abs(dCost).toFixed(0)}% menos)`
+    : dCost > 2 ? `<b>La pauta tradicional aún convierte más barato</b>: ${money(t.cpconv)} frente a ${money(n.cpconv)} de NBB (NBB ${dCost.toFixed(0)}% más cara)`
+    : `<b>Ambas estrategias convierten a un costo similar</b> (${money(n.cpconv)} NBB vs ${money(t.cpconv)} tradicional)`;
+  return `<div class="mh">Lectura del período · ${p.label}</div>
+    ${lead}. Con el <b>${share.toFixed(0)}%</b> de la inversión, NBB generó el <b>${cshare.toFixed(0)}%</b> de las conversaciones de la cuenta.
+    <ul>
+      <li>Frente a la línea base histórica de la pauta tradicional (${BASE.weeks} semanas, ${money(BASE.cpconv)}), el costo NBB está ${dBase < 0 ? `<b style="color:var(--green)">${Math.abs(dBase).toFixed(0)}% por debajo</b>` : `<b style="color:var(--red)">${dBase.toFixed(0)}% por encima</b>`}.</li>
+      <li>CTR: NBB ${n.ctr}% vs tradicional ${t.ctr}% (${dCtr > 0 ? '+' : ''}${dCtr.toFixed(0)}%) — los creativos NBB ${dCtr > 20 ? 'atraen más clics por impresión' : dCtr < -20 ? 'atraen menos clics por impresión' : 'atraen clics a un ritmo similar'}; la conversión posterior a WhatsApp define el costo final.</li>
+      <li>Escalas distintas: ${money(t.spend)} vs ${money(n.spend)} en el período. Un costo por conversación menor con menos presupuesto no asegura el mismo costo al escalar; la ventana común (acumulado) es la referencia más estable.</li>
+    </ul>`;
 }
 
-function renderAll(){
-  const d = P[CUR];
-  const avg = d.totals.cpconv;
-  d.campaigns.forEach(c=>{const s=scoreCampaign(c,avg);c._score=s.score;c._level=s.level;c._reasons=s.reasons;});
-  renderKPIs();
-
-  const ordered=[...d.campaigns].sort((a,b)=>b._score-a._score||b.spend-a.spend);
-  document.getElementById('cards').innerHTML=ordered.map(cardHTML).join('');
-  const reds=ordered.filter(c=>c._level==='r').length, yel=ordered.filter(c=>c._level==='y').length;
-  document.getElementById('alertCnt').textContent=`${reds} actuar ya · ${yel} vigilar · ${ordered.length-reds-yel} estables`;
-
-  const sedeList=document.getElementById('sedeList');
-  sedeList.innerHTML=ordered.map(c=>`
-    <button class="sede-btn" data-c="${encodeURIComponent(c.campaign)}">
-    <div class="sn">${c.sede}</div>
-    <div class="sr"><span>Conv <b>${c.conv}</b></span><span>Costo <b>${money(c.cpconv)}</b></span><span>Inv <b>${K(c.spend)}</b></span></div>
-    </button>`).join('');
-  document.getElementById('sedeDetail').innerHTML='';
-
-  document.getElementById('adCards').innerHTML=d.ads.map(adCardHTML).join('');
-  const multiCount=d.ads.filter(a=>a.campaigns>1).length;
-  document.getElementById('adCnt').textContent=`${d.ads.length} anuncios únicos · ${multiCount} compartidos entre sedes`;
-  document.getElementById('genstamp').textContent='Generado '+new Date().toLocaleString('es-CO');
+function shareHTML(p) {
+  const t = p.trad, n = p.nbb;
+  const bar = (a, b, fmt) => {
+    const pa = a / (a + b) * 100, pb = 100 - pa;
+    return `<div class="sbar"><i class="t" style="width:${pa}%">${pa.toFixed(0)}%</i><i class="n" style="width:${pb}%">${pb.toFixed(0)}%</i></div>
+      <div class="sbar-l"><span>tradicional ${fmt(a)}</span><span>NBB ${fmt(b)}</span></div>`;
+  };
+  return `<div class="sh"><span>Participación en la cuenta · ${p.label}</span><span>si la barra de conversaciones supera a la de inversión, esa estrategia es más eficiente</span></div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:4px">INVERSIÓN</div>${bar(t.spend, n.spend, v => money(v))}
+    <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:4px">CONVERSACIONES</div>${bar(t.conv, n.conv, v => COP(v))}
+    <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:4px">CLICS EN EL ENLACE</div>${bar(t.clicks, n.clicks, v => COP(v))}`;
 }
 
-document.getElementById('sedeList').addEventListener('click',e=>{
-  const btn=e.target.closest('.sede-btn'); if(!btn) return;
-  document.querySelectorAll('.sede-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
-  const name=decodeURIComponent(btn.dataset.c);
-  const c=P[CUR].campaigns.find(x=>x.campaign===name);
-  const det=document.getElementById('sedeDetail');
-  det.innerHTML=`<h2 class="sec">${c.sede} <span class="cnt">${c.ads} anuncios · ${c.sets} conjunto(s)</span></h2><div class="grid">${cardHTML(c)}</div>`;
-  det.scrollIntoView({behavior:'smooth',block:'nearest'});
-});
+function sedeTable(id) {
+  const rows = C.by_sede[id].map(r => ({ ...r, d: (r.nbb.conv && r.trad.conv) ? pct(r.nbb.cpconv, r.trad.cpconv) : null }))
+    .sort((a, b) => (a.d === null) - (b.d === null) || a.d - b.d);
+  const tot = pair(id);
+  const TIE = 10; // ±10 % se considera empate a nivel de sede (volúmenes pequeños)
+  const cell = (x, lower) => x === null ? '<td class="flat">—</td>' : `<td class="${Math.abs(x) < TIE ? 'flat' : (lower ? x < 0 : x > 0) ? 'win' : 'lose'}">${x > 0 ? '+' : ''}${x.toFixed(0)}%</td>`;
+  const body = rows.map(r => `<tr>
+    <td class="nm">${esc(r.sede)}</td>
+    <td class="sep"><b>${r.trad.conv}</b></td><td>${r.trad.conv ? money(r.trad.cpconv) : '—'}</td><td>${r.trad.ctr}%</td><td>${money(r.trad.spend)}</td>
+    <td class="sep"><b>${r.nbb.spend ? r.nbb.conv : '—'}</b></td><td>${r.nbb.conv ? money(r.nbb.cpconv) : '—'}</td><td>${r.nbb.spend ? r.nbb.ctr + '%' : '—'}</td><td>${r.nbb.spend ? money(r.nbb.spend) : '—'}</td>
+    ${cell(r.d, true)}
+  </tr>`).join('');
+  const dt = pct(tot.nbb.cpconv, tot.trad.cpconv);
+  document.getElementById('sedeTable').innerHTML = `<thead>
+    <tr><th></th><th class="grp t sep" colspan="4">Pauta tradicional</th><th class="grp n sep" colspan="4">Estrategia NBB</th><th></th></tr>
+    <tr><th>Sede</th><th class="sep">Conv</th><th>Costo/conv</th><th>CTR</th><th>Inversión</th><th class="sep">Conv</th><th>Costo/conv</th><th>CTR</th><th>Inversión</th><th>Δ costo</th></tr>
+  </thead><tbody>${body}
+    <tr class="tot"><td class="nm">Total</td>
+      <td class="sep">${tot.trad.conv}</td><td>${money(tot.trad.cpconv)}</td><td>${tot.trad.ctr}%</td><td>${money(tot.trad.spend)}</td>
+      <td class="sep">${tot.nbb.conv}</td><td>${money(tot.nbb.cpconv)}</td><td>${tot.nbb.ctr}%</td><td>${money(tot.nbb.spend)}</td>
+      ${cell(dt, true)}</tr></tbody>`;
+  const wins = rows.filter(r => r.d !== null && r.d < -TIE).length, loses = rows.filter(r => r.d !== null && r.d > TIE).length;
+  document.getElementById('sedeCnt').textContent = `NBB más eficiente en ${wins} sedes · tradicional en ${loses} · ${rows.length - wins - loses} empate/sin dato`;
+}
 
-document.getElementById('periodToggle').addEventListener('click',e=>{
-  const b=e.target.closest('button'); if(!b) return;
-  document.querySelectorAll('#periodToggle button').forEach(x=>x.classList.remove('on'));
-  b.classList.add('on'); CUR=b.dataset.p; renderAll();
-});
-document.getElementById('viewTabs').addEventListener('click',e=>{
-  const b=e.target.closest('button'); if(!b) return;
-  document.querySelectorAll('#viewTabs button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
-  const v=b.dataset.v;
-  document.getElementById('view-overview').classList.toggle('hidden',v!=='overview');
-  document.getElementById('view-sedes').classList.toggle('hidden',v!=='sedes');
-  document.getElementById('view-ads').classList.toggle('hidden',v!=='ads');
-});
+function renderAll() {
+  const p = pair(CUR);
+  document.getElementById('winlabel').textContent = p.start + ' → ' + p.end;
+  document.getElementById('scopeNote').textContent = (CUR === 'acc'
+    ? `Ventana común: ${p.label} (${p.weeks} semanas en las que ambas estrategias rodaron a la vez). `
+    : `Semana del ${p.label}. `)
+    + `Los presupuestos son distintos (tradicional ${money(p.trad.spend).replace(/<[^>]+>/g, '')} vs NBB ${money(p.nbb.spend).replace(/<[^>]+>/g, '')}), por eso la comparación se hace sobre eficiencia: costo por conversación, conversaciones por cada COP 100.000, CTR y CPC. Conversaciones = «Conversaciones con mensajes iniciadas» (WhatsApp) en ambas estrategias.`;
+  document.getElementById('verdict').innerHTML = verdictHTML(p);
+  document.getElementById('duel').innerHTML = colHTML('trad', p.trad, p.nbb) + colHTML('nbb', p.nbb, p.trad);
+  document.getElementById('share').innerHTML = shareHTML(p);
+  sedeTable(CUR);
+  renderComments(document.getElementById('comments'), 'cmp_' + CUR);
+}
 
-renderTrend();
+renderNav('index.html');
+buildPeriodToggle(document.getElementById('periodToggle'),
+  [...shown.map(id => ({ id, label: weekLabel(id) })), { id: 'acc', label: 'Ventana común (' + C.window.label + ')' }],
+  CUR, p => { CUR = p; renderAll(); });
+document.getElementById('trendTitle').textContent = 'Tendencia · ' + C.account_trend.length + ' semanas · cuenta completa (ambas estrategias)';
+renderTrend(document.getElementById('trendBars'), C.account_trend, {
+  stack: t => [{ cls: 't', conv: t.trad.conv }, { cls: 'n', conv: t.nbb ? t.nbb.conv : 0 }],
+  extraLine: t => t.nbb ? `<div class="split"><b class="t">${t.trad.conv}</b> · ${NF.format(t.trad.cpconv)}<br><b class="n">${t.nbb.conv}</b> · ${NF.format(t.nbb.cpconv)}</div>` : '',
+});
 renderAll();
+stamp();
 </script>
 </body>
 </html>
