@@ -45,19 +45,27 @@ WEEKS = [
     dict(id="w9",  file="NBB-Informe-24_30ago.csv",    label="24–30 ago",     start="2026-08-24", end="2026-08-30", reach=dict(trad=78596)),
     dict(id="w10", file="NBB-Informe-31ago_6sep.csv",  label="31 ago–6 sep",  start="2026-08-31", end="2026-09-06", reach=dict(trad=109335, nbb=28736)),
     dict(id="w11", file="NBB-Informe-7_14sep.csv",     label="7–13 sep",      start="2026-09-07", end="2026-09-13", reach=dict(trad=96342,  nbb=31681)),
+    # Desde la semana 12 el export llega separado: un CSV con la pauta tradicional y otro con NBB.
+    dict(id="w12", files=["NBB-Informe-14_20sep.csv", "Ads NBB/NBB SEM 3 - 14 al 20 SEP 2026.csv"],
+         label="14–20 sep", start="2026-09-14", end="2026-09-20", reach=dict(trad=66424, nbb=36232)),
+    dict(id="w13", files=["NBB-Informe-21_27sep.csv", "Ads NBB/NBB SEM 4 - 21 al 27 SEP 2026.csv"],
+         label="21–27 sep", start="2026-09-21", end="2026-09-27", reach=dict(trad=67905, nbb=46811)),
 ]
 # Alcance deduplicado acumulado (Meta Informes) al cierre de la última semana.
 #   trad: 29 jun → fin de la última semana.  nbb: 31 ago → fin de la última semana.
-ACC_REACH = dict(trad=384849, nbb=51079)
+ACC_REACH = dict(trad=392737, nbb=99378)
 # Alcance deduplicado de la pauta tradicional SOLO en la ventana común con NBB (31 ago → fin de la última semana).
 # Sirve para comparar alcance/frecuencia entre estrategias en el acumulado; opcional.
 TRAD_WINDOW_REACH = None
 # Registro histórico de acumulados anteriores (solo documental, no se renderiza):
-#   trad 29 jun–30 ago: 318722 · trad 29 jun–6 sep: 357415
+#   trad 29 jun–30 ago: 318722 · 29 jun–6 sep: 357415 · 29 jun–13 sep: 384849 · 29 jun–20 sep: 374408 (*)
+#   nbb  31 ago–13 sep: 51079 · 31 ago–20 sep: 73076
+#   (*) Meta reportó 374.408 para el corte del 20 sep, por debajo del corte anterior (384.849). Un acumulado
+#       deduplicado no puede decrecer: es un reajuste de la estimación de Meta, no un dato comparable.
 
 NBB_START = "w10"              # primera semana con la estrategia NBB
-PERIODS_SHOWN = ["w10", "w11"] # semanas seleccionables en el toggle (además del acumulado)
-CUR = "w11"                    # semana por defecto
+PERIODS_SHOWN = ["w12", "w13"] # semanas seleccionables en el toggle (además del acumulado)
+CUR = "w13"                    # semana por defecto
 
 # ───────────────────────── Nomenclatura ─────────────────────────
 # Campañas de la pauta tradicional → sede canónica. Todo lo que NO esté aquí y empiece por "NBB |"
@@ -107,10 +115,25 @@ def num(v, f=float):
     v = (v or "").strip()
     return f(float(v)) if v not in ("", "-") else 0
 
+def week_files(w):
+    """Una semana puede venir en un solo CSV (ambas estrategias) o repartida en varios."""
+    return w["files"] if isinstance(w.get("files"), list) else [w["file"]]
+
 def read_week(w):
-    path = os.path.join(CSV_DIR, w["file"])
-    with open(path, encoding="utf-8-sig") as fh:
-        raw = list(csv.DictReader(io.StringIO(fh.read())))
+    raw = []
+    for f in week_files(w):
+        with open(os.path.join(CSV_DIR, f), encoding="utf-8-sig") as fh:
+            part = list(csv.DictReader(io.StringIO(fh.read())))
+        # Sanidad: el rango de cada archivo debe coincidir con la semana declarada.
+        rng = {(r["Inicio del informe"], r["Fin del informe"]) for r in part}
+        if rng != {(w["start"], w["end"])}:
+            sys.exit(f"[{f}] El rango del CSV {rng} no coincide con la semana {w['start']}–{w['end']}")
+        raw += part
+    # Si la misma fila (campaña/conjunto/anuncio) llega por dos archivos, se contaría doble.
+    keys = [(r["Nombre de la campaña"], r["Nombre del conjunto de anuncios"], r["Nombre del anuncio"]) for r in raw]
+    if len(keys) != len(set(keys)):
+        dup = [k for k, n in __import__("collections").Counter(keys).items() if n > 1][:3]
+        sys.exit(f"[{w['id']}] Filas duplicadas entre los CSV de la semana: {dup}")
     rows = []
     for r in raw:
         camp = r["Nombre de la campaña"].strip()
@@ -133,18 +156,14 @@ def read_week(w):
             parts = [p.strip() for p in row["adset"].split("|")]
             sede_raw = parts[0].replace("Sucursal", "").strip()
             if sede_raw not in NBB_SEDES:
-                sys.exit(f"[{w['file']}] Conjunto NBB con sede desconocida: {row['adset']!r}")
+                sys.exit(f"[{w['id']}] Conjunto NBB con sede desconocida: {row['adset']!r}")
             row.update(strategy="nbb", sede=NBB_SEDES[sede_raw], audience=a["key"],
                        age=parts[1].replace("Años", "").strip() if len(parts) > 1 else a["age"])
         else:
-            sys.exit(f"[{w['file']}] Campaña no clasificada (¿nueva nomenclatura?): {camp!r}")
+            sys.exit(f"[{w['id']}] Campaña no clasificada (¿nueva nomenclatura?): {camp!r}")
         # Se incluyen filas sin entrega/archivadas si tuvieron gasto o resultados (decisión NBB).
         if row["spend"] or row["conv"] or row["imp"]:
             rows.append(row)
-    # Sanidad: el rango del informe debe coincidir con la semana declarada.
-    rng = {(r["Inicio del informe"], r["Fin del informe"]) for r in raw}
-    if rng != {(w["start"], w["end"])}:
-        sys.exit(f"[{w['file']}] El rango del CSV {rng} no coincide con la semana {w['start']}–{w['end']}")
     return rows
 
 

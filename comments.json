@@ -20,9 +20,10 @@
   "trad_acc": {
     "draft": true,
     "paragraphs": [
-      "Acumulado de once semanas: <b>COP 18,77 millones · 5.256 conversaciones · COP 3.570 por conversación</b> · 384.849 personas únicas alcanzadas (frecuencia acumulada 4,08). Tendencia: pico en la semana 3 (536 conversaciones a COP 3.237), deterioro por fatiga de creativos hasta la semana 8 (410, COP 4.183) y recuperación sostenida en las semanas 9 a 11 (451 → 496 → 497), con el costo bajando de COP 3.768 a COP 3.383.",
+      "Acumulado de trece semanas: <b>COP 22,18 millones · 6.048 conversaciones · COP 3.668 por conversación</b> · 392.737 personas únicas alcanzadas (frecuencia acumulada 4,57). La curva completa: pico en la semana 3 (536 conversaciones a COP 3.237), desgaste hasta la semana 8 (410, COP 4.183), recuperación en las semanas 9 a 11 (451 → 496 → 497, hasta COP 3.383) y nueva caída en las semanas 12 y 13 (436 → 356, hasta COP 4.850).",
+      "<b>Diagnóstico:</b> el repunte de principios de septiembre fue un respiro, no un cambio de tendencia. Los mismos dos vídeos genéricos («Video Señal» y «Esto es Fisiopilates») llevan seis meses cargando la cuenta y ya muestran costos crecientes semana a semana. Con frecuencia acumulada 4,57 y el alcance semanal estancado en 66–68 mil personas, la pauta tradicional necesita creativos nuevos o reducción de presupuesto en favor de la estrategia NBB.",
       "<b>Nota — contexto (terremoto):</b> el sismo del 10 de agosto en Colombia deprimió la interacción con contenido comercial durante las semanas 7 y 8; a partir de la semana 9 el efecto se disipa.",
-      "<b>Nota — nueva estrategia (arranque 31 ago):</b> desde el lunes 31 de agosto de 2026 corren en paralelo los anuncios de la estrategia de Navarro Brands (3 campañas por audiencia, 11 conjuntos cada una). Esta página sigue reportando únicamente la pauta tradicional, que actúa como línea base; el desempeño comparado se lee en «Resumen comparativo» y el detalle de la nueva pauta en «Estrategia NBB»."
+      "<b>Nota — alcance acumulado:</b> Meta reportó 374.408 personas para el corte del 20 de septiembre, por debajo de las 384.849 del corte del 13 de septiembre. Un alcance deduplicado acumulado no puede decrecer, así que se trata de un reajuste de la estimación de Meta y no de un dato comparable; en el dashboard se usa el corte del 27 de septiembre (392.737), consistente con la serie."
     ]
   },
   "nbb_w11": {
@@ -48,10 +49,11 @@
   "nbb_acc": {
     "draft": true,
     "paragraphs": [
-      "Acumulado de dos semanas (31 ago – 13 sep): <b>COP 1,74 millones · 510 conversaciones · COP 3.419 por conversación</b> · CTR 2,01 %. La curva de aprendizaje es clara: de COP 3.990 en la semana 1 a COP 3.029 en la semana 2.",
-      "Alcance deduplicado: 51.079 personas únicas en dos semanas (la suma semanal es 60.417; 9.338 personas vieron anuncios en ambas semanas). Frecuencia acumulada 2,05 — el doble de ritmo que la pauta tradicional, que llegó a 4,08 en once semanas. A este ritmo el desgaste de creativos llegará antes; rotar creativos y corregir el solapamiento de edades son prioridad.",
-      "Ranking de audiencias: Adulto Mayor (191 conversaciones, COP 3.035), Dolor Crónico y Post-Q (178, COP 3.296) y Adulto Joven Preventivo (141, COP 4.095). El presupuesto se repartió en partes iguales (~COP 580.000 por audiencia); con los datos de dos semanas ya hay base para ponderar hacia Adulto Mayor y Dolor Crónico.",
-      "Dos hallazgos estructurales: (1) <b>las series de posts convierten 2,5 veces más barato que los reels</b> (COP 2.429–3.619 vs COP 6.583–7.486); (2) <b>siete sedes rinden entre COP 2.047 y COP 2.716 y cuatro sedes entre COP 11.618 y COP 19.977</b> (Colina - Mazuren, Cedritos, Calle 119, El Contador). Reasignar presupuesto entre creativos y entre sedes es la palanca inmediata de optimización, junto con la corrección del objetivo de campaña (hoy clientes potenciales; debería ser conversaciones por WhatsApp)."
+      "Acumulado de cuatro semanas (31 ago – 27 sep): <b>COP 3,56 millones · 1.057 conversaciones · COP 3.367 por conversación</b> · CTR 2,06 % · 99.378 personas únicas (frecuencia 2,61). La curva de aprendizaje quedó atrás: COP 3.990 → 3.029 → 3.449 → 3.207, con el repunte de la semana 12 explicado por un solo reel.",
+      "Ranking de audiencias, ya con volumen suficiente para decidir: <b>Adulto Mayor 380 conversaciones a COP 3.102</b>, Dolor Crónico y Post-Q 374 a COP 3.184, y Adulto Joven Preventivo 303 a COP 3.925. El presupuesto está repartido casi en tercios (COP 1,18 millones cada una); mover un 15–20 % de Adulto Joven hacia las otras dos es el ajuste más directo.",
+      "<b>Posts vs. reels, ya sin margen de duda:</b> las tres series de posts convierten entre COP 2.753 y COP 3.267; Reel 1 va en COP 8.378 y Reel 2 en COP 7.439. Los dos reels llevan COP 827.000 acumulados (23 % de la inversión) para 103 conversaciones (10 % del total). Repartir ese presupuesto entre las series de posts habría producido alrededor de 180 conversaciones adicionales en el mismo período.",
+      "<b>Dos grupos de sedes perfectamente separados:</b> siete rinden entre COP 2.166 y COP 2.464 (Av. El Dorado, El Carmel, Santa Bárbara, Bulevar, Salitre, Chicó Norte, Cedro Golf) y cuatro entre COP 10.211 y COP 20.312 (Colina - Mazuren, Calle 119, Cedritos, El Contador). Las cuatro caras consumen cerca de un tercio del presupuesto y aportan menos del 10 % de las conversaciones. Como son las mismas sedes de mayor costo en la pauta tradicional, el problema es de plaza (densidad de público en el radio), no de creativo: la vía es recortar presupuesto y revisar radios de ubicación.",
+      "<b>Nota — objetivo de campaña:</b> las tres campañas siguen configuradas con objetivo de clientes potenciales, mientras el resultado que se mide y que importa son las conversaciones de WhatsApp. La entrega de Meta se optimiza hacia una señal distinta y muy escasa; reconstruir las campañas con objetivo de interacción → conversaciones por WhatsApp sigue siendo la recomendación principal."
     ]
   },
   "cmp_w11": {
@@ -75,9 +77,64 @@
   "cmp_acc": {
     "draft": true,
     "paragraphs": [
-      "Ventana común 31 ago – 13 sep (dos semanas con ambas estrategias activas): <b>empate técnico en costo por conversación — NBB COP 3.419 vs tradicional COP 3.439</b> —, pero con trayectorias opuestas: NBB pasó de COP 3.990 a COP 3.029 mientras la tradicional se movió de COP 3.494 a COP 3.383. NBB lo logra con el 34 % de la inversión y aporta el 34 % de las conversaciones y el 46 % de los clics.",
-      "Ambas están por debajo de la línea base histórica de la pauta tradicional (COP 3.601 en nueve semanas): la cuenta en su conjunto mejoró desde que corren en paralelo (1.503 conversaciones en dos semanas, COP 3.432 a nivel de cuenta).",
-      "Qué sigue: (1) reasignar en NBB el presupuesto de los reels hacia las series de posts y de las cuatro sedes de alto costo hacia las siete eficientes; (2) mantener la pauta tradicional como línea base mientras NBB acumula al menos cuatro semanas; (3) corregir el objetivo de las campañas NBB (clientes potenciales → conversaciones por WhatsApp) y el solapamiento de edades entre audiencias, que ya empuja la frecuencia NBB a 2,05 en dos semanas."
+      "Ventana común 31 ago – 27 sep (cuatro semanas con ambas estrategias activas): <b>NBB COP 3.367 por conversación frente a COP 3.826 de la pauta tradicional, un 12 % de ventaja</b>, y con trayectorias opuestas —NBB pasó de COP 3.990 a COP 3.207; la tradicional, de COP 3.494 a COP 4.850—. NBB lo consigue con el 34 % de la inversión, aportando el 37 % de las conversaciones y el 55 % de los clics.",
+      "Frente a la línea base histórica de la pauta tradicional (nueve semanas, COP 3.601), NBB está un 6 % por debajo y la pauta tradicional un 6 % por encima. La cuenta completó 2.842 conversaciones en estas cuatro semanas, a COP 3.655.",
+      "Eficiencia normalizada por presupuesto: NBB genera <b>29,7 conversaciones por cada COP 100.000</b> invertidos frente a 26,1 de la pauta tradicional, y la brecha se amplía cada semana.",
+      "Alcance: la pauta tradicional llegó a 392.737 personas únicas en trece semanas (frecuencia 4,57) y NBB a 99.378 en cuatro (frecuencia 2,61). NBB acumula frecuencia a mayor ritmo por el solapamiento geográfico entre sedes cercanas —Meta lo reporta como públicos que se cruzan—, algo que no se corrige uniendo conjuntos, porque cada conjunto define el WhatsApp de su sede; la vía son los radios de ubicación y el presupuesto por conjunto.",
+      "<b>Qué sigue:</b> (1) apagar o reducir al mínimo los dos reels en NBB y repartir ese 23 % del presupuesto entre las series de posts; (2) recortar las cuatro sedes caras (Colina - Mazuren, Calle 119, Cedritos, El Contador) y revisar sus radios de ubicación; (3) producir creativos nuevos para la pauta tradicional, cuyos dos vídeos principales ya muestran costos crecientes semana a semana; (4) reconstruir las campañas NBB con objetivo de conversaciones por WhatsApp en lugar de clientes potenciales."
+    ]
+  },
+  "trad_w13": {
+    "draft": true,
+    "paragraphs": [
+      "Semana de fuerte deterioro: <b>356 conversaciones (−18 %) a COP 4.850 por conversación (+25 %)</b>, el costo más alto de toda la serie de trece semanas —por encima incluso del pico de agosto tras el sismo (COP 4.183)—. La inversión se mantuvo en COP 1,73 millones, así que la caída es de rendimiento, no de presupuesto. El CTR bajó a 0,85 % y el CPC subió a COP 1.883.",
+      "El retroceso es general, no de una sede: Cedro Golf cayó de 50 a 32 conversaciones, Chicó Norte de 51 a 38 y El Carmel de 37 a 24. Las mejores de la semana —Remarketing (COP 3.095), Av. El Dorado (COP 3.268) y Chicó Norte (COP 3.791)— están al nivel del <i>promedio</i> de semanas anteriores. En el extremo alto, Calle 119 (COP 7.999), Cedritos (COP 6.434) y Colina - Mazuren (COP 5.995).",
+      "Los dos creativos que sostienen la cuenta se están agotando: «Video Señal» pasó de COP 4.243 a COP 5.517 por conversación y «Esto es Fisiopilates» de COP 2.646 a COP 3.571 en una sola semana. Son los mismos vídeos que corren desde marzo y abril; el alcance semanal lleva dos semanas estancado en 66–68 mil personas frente a las 96–109 mil de principios de mes.",
+      "<b>Lectura:</b> la pauta tradicional agotó el rebote de comienzos de septiembre y vuelve a la trayectoria de desgaste. Sin creativos nuevos, el costo seguirá subiendo. Es el argumento más claro para trasladar presupuesto hacia la estrategia NBB, que esta misma semana convirtió a COP 3.207."
+    ]
+  },
+  "trad_w12": {
+    "draft": true,
+    "paragraphs": [
+      "Corte de la racha positiva: <b>436 conversaciones (−12 %) a COP 3.873 (+14 %)</b>. Llamativo que el CTR subiera a 0,94 % —el mejor desde principios de agosto— mientras el costo por conversación empeoraba: los anuncios siguen atrayendo clics, pero menos de esos clics terminan en una conversación de WhatsApp.",
+      "El alcance deduplicado cayó a <b>66.424 personas (−31 %)</b> con la misma inversión, y la frecuencia subió a 1,72. Menos personas viendo los anuncios más veces cada una: la señal clásica de saturación del público disponible con los creativos actuales.",
+      "Por sede: Remarketing (56 conversaciones, COP 2.555), Chicó Norte (COP 2.629) y Cedro Golf (COP 2.894) sostuvieron la semana. Santa Bárbara cayó de 41 a 23 conversaciones (COP 6.184), El Carmel de 57 a 37 y Bulevar de 46 a 33. Calle 119 (COP 6.563) sigue siendo la sede más cara por cuarta semana consecutiva."
+    ]
+  },
+  "nbb_w13": {
+    "draft": true,
+    "paragraphs": [
+      "Cuarta semana y mejor registro absoluto de la estrategia: <b>296 conversaciones a COP 3.207</b> con COP 949.251 invertidos. El dato de fondo es la comparación: esta misma semana la pauta tradicional convirtió a COP 4.850, así que <b>NBB convierte 34 % más barato</b> con poco más de la mitad del presupuesto.",
+      "Alcance deduplicado de 46.811 personas (+29 %), el mayor de la estrategia, con frecuencia 1,90 y un CPM de COP 10.687 —un 33 % más barato que el de la pauta tradicional (COP 16.011)—. La estrategia está comprando atención más barata y convirtiéndola mejor.",
+      "Por audiencia se cerró la brecha: <b>Adulto Mayor y Dolor Crónico empatan en 104 conversaciones</b> (COP 3.013 y COP 3.000) y Adulto Joven Preventivo llega a 88 (COP 3.680). Las tres series de posts convierten entre COP 2.918 y COP 3.082 con presupuestos casi idénticos: la segmentación por audiencia rinde de forma pareja.",
+      "<b>Reels:</b> Reel 1 mejoró a COP 8.780 (13 conversaciones) y Reel 2 sigue en COP 5.882 con apenas 2. Entre los dos consumieron el 13 % del presupuesto para el 5 % de las conversaciones. Siguen siendo el peor uso del dinero de la estrategia.",
+      "Por sede, <b>Salitre lidera con 51 conversaciones a COP 1.684</b>, seguida de Av. El Dorado (COP 1.982) y Santa Bárbara (COP 2.266). Las cuatro sedes problema (Calle 119, Colina - Mazuren, Cedritos y El Contador) siguen entre COP 9.390 y COP 17.836 y acumulan cuatro semanas sin corregir: es el ajuste pendiente más rentable."
+    ]
+  },
+  "nbb_w12": {
+    "draft": true,
+    "paragraphs": [
+      "Semana de transición: <b>251 conversaciones a COP 3.449</b> (frente a 303 a COP 3.029 la semana previa). La caída se explica casi por completo por un solo creativo: <b>Reel 1 - Método consumió COP 127.615 (15 % del presupuesto) y generó 6 conversaciones, a COP 21.269 cada una</b>. Sin ese reel, el costo de la semana habría sido de unos COP 3.000.",
+      "El resto de la estrategia se mantuvo firme: las tres series de posts convirtieron entre COP 2.870 y COP 3.078, y el CTR subió a 2,23 % —el mejor de la estrategia hasta la fecha— frente al 0,94 % de la pauta tradicional.",
+      "Alcance deduplicado de 36.232 personas (+14 %) con frecuencia 1,81. Por sede, Av. El Dorado (43 conversaciones, COP 1.826), Chicó Norte (COP 2.312) y El Carmel (COP 2.434) encabezan; El Contador (COP 25.331), Calle 119 (COP 13.479) y Cedritos (COP 11.888) siguen sin despegar."
+    ]
+  },
+  "cmp_w13": {
+    "draft": true,
+    "paragraphs": [
+      "Semana 21 – 27 sep: la distancia entre estrategias se abre de forma decisiva. <b>NBB convierte a COP 3.207 y la pauta tradicional a COP 4.850: un 34 % de diferencia a favor de la nueva estrategia</b>, con NBB usando el 35 % de la inversión de la cuenta y aportando el 45 % de las conversaciones.",
+      "La cuenta completa cerró en 652 conversaciones a COP 4.104, su peor costo desde el sismo de agosto. Lo relevante es la composición: NBB subió de 251 a 296 conversaciones mientras la pauta tradicional cayó de 436 a 356. Sin el aporte de NBB, la cuenta estaría en su peor semana del año.",
+      "Eficiencia de compra: NBB paga COP 10.687 por cada mil impresiones frente a COP 16.011 de la pauta tradicional, y COP 532 por clic frente a COP 1.883. Los creativos por audiencia compran atención un tercio más barata y la convierten mejor.",
+      "Sede por sede, NBB es más eficiente en <b>7 de las 11 sedes</b>: Salitre (−67 %), Bulevar (−55 %), El Carmel (−53 %), Santa Bárbara (−52 %), Cedro Golf (−49 %), Av. El Dorado (−39 %) y Chicó Norte (−33 %). Pierde en las cuatro sedes donde ambas estrategias son caras: El Contador, Cedritos, Colina - Mazuren y Calle 119.",
+      "<b>Recomendación:</b> con cuatro semanas de datos y la ventaja sostenida, procede mover presupuesto de la pauta tradicional a NBB en las siete sedes donde NBB gana, y usar el ahorro para producir creativos nuevos en la pauta tradicional, cuyos vídeos de marzo y abril ya tocaron su techo."
+    ]
+  },
+  "cmp_w12": {
+    "draft": true,
+    "paragraphs": [
+      "Semana 14 – 20 sep: <b>NBB convierte a COP 3.449 y la pauta tradicional a COP 3.873 (11 % de ventaja para NBB)</b>, la segunda semana consecutiva por delante. Con el 34 % de la inversión, NBB aportó el 37 % de las conversaciones y el 58 % de los clics de la cuenta.",
+      "Ambas estrategias retrocedieron respecto a la semana anterior, pero por causas distintas: en NBB el retroceso es atribuible a un único creativo (Reel 1 - Método, COP 21.269 por conversación); en la pauta tradicional es un deterioro generalizado, con el alcance semanal cayendo un 31 % y la frecuencia subiendo a 1,72.",
+      "La cuenta completa: 687 conversaciones a COP 3.719. Sede por sede, NBB gana en Santa Bárbara (−59 %), Av. El Dorado (−40 %), Bulevar (−36 %), El Carmel (−34 %) y Salitre (−28 %), y empata en Chicó Norte y Cedro Golf."
     ]
   }
 }

@@ -168,7 +168,7 @@ function renderAll() {
   renderKPIs();
 
   document.getElementById('audSummary').innerHTML = auds.map(a => audCardHTML(a, false)).join('');
-  document.getElementById('audCnt').textContent = auds.map(a => `${a.name.split(' ')[0]} ${a.conv}`).join(' · ');
+  document.getElementById('audCnt').textContent = auds.map(a => `${a.name.replace(/ (Preventivo|y Post-Q)$/, '')} ${a.conv}`).join(' · ');
   document.getElementById('audCards').innerHTML = auds.map(a => audCardHTML(a, true)).join('');
   renderSetTable(sets);
   document.getElementById('alertCnt').textContent = alertCount(sets);
