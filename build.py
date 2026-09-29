@@ -53,15 +53,16 @@ WEEKS = [
 ]
 # Alcance deduplicado acumulado (Meta Informes) al cierre de la última semana.
 #   trad: 29 jun → fin de la última semana.  nbb: 31 ago → fin de la última semana.
-ACC_REACH = dict(trad=392737, nbb=99378)
+ACC_REACH = dict(trad=358818, nbb=99378)
 # Alcance deduplicado de la pauta tradicional SOLO en la ventana común con NBB (31 ago → fin de la última semana).
 # Sirve para comparar alcance/frecuencia entre estrategias en el acumulado; opcional.
 TRAD_WINDOW_REACH = None
 # Registro histórico de acumulados anteriores (solo documental, no se renderiza):
-#   trad 29 jun–30 ago: 318722 · 29 jun–6 sep: 357415 · 29 jun–13 sep: 384849 · 29 jun–20 sep: 374408 (*)
+#   trad 29 jun–30 ago: 318722 · 29 jun–6 sep: 357415 (*) · 29 jun–13 sep: 384849 (*) · 29 jun–20 sep: 342719
 #   nbb  31 ago–13 sep: 51079 · 31 ago–20 sep: 73076
-#   (*) Meta reportó 374.408 para el corte del 20 sep, por debajo del corte anterior (384.849). Un acumulado
-#       deduplicado no puede decrecer: es un reajuste de la estimación de Meta, no un dato comparable.
+#   (*) Los cortes del 6 y el 13 de septiembre se tomaron sin filtrar las campañas NBB, así que corresponden a
+#       la CUENTA COMPLETA y no a la pauta tradicional sola. No son comparables con los cortes posteriores
+#       (20 sep: 342719 y 27 sep: 358818), ya tomados solo sobre las campañas «CO |».
 
 NBB_START = "w10"              # primera semana con la estrategia NBB
 PERIODS_SHOWN = ["w12", "w13"] # semanas seleccionables en el toggle (además del acumulado)
