@@ -33,6 +33,8 @@ COMMENTS = os.path.join(HERE, "comments.json")
 # reach = alcance deduplicado de Meta Informes para ese rango, por estrategia.
 # "trad" = pauta tradicional (12 campañas por sede), "nbb" = estrategia NBB (3 campañas por audiencia).
 # Hasta la semana 9 solo existía la pauta tradicional, por eso trad == cuenta.
+# OJO: el informe de alcance de la pauta tradicional debe filtrarse a las campañas «CO |». Las cifras de las
+# semanas 10 y 11 llegaron sin filtrar (eran de cuenta completa: 109.335 y 96.342) y se corrigieron el 29 sep.
 WEEKS = [
     dict(id="w1",  file="NBB-Informe-sem1.csv",        label="29 jun–5 jul",  start="2026-06-29", end="2026-07-05", reach=dict(trad=61159)),
     dict(id="w2",  file="NBB-Informe-6_12jul.csv",     label="6–12 jul",      start="2026-07-06", end="2026-07-12", reach=dict(trad=75473)),
@@ -43,8 +45,8 @@ WEEKS = [
     dict(id="w7",  file="NBB-Informe-10_16ago.csv",    label="10–16 ago",     start="2026-08-10", end="2026-08-16", reach=dict(trad=89993)),
     dict(id="w8",  file="NBB-Informe-17_23ago.csv",    label="17–23 ago",     start="2026-08-17", end="2026-08-23", reach=dict(trad=77852)),
     dict(id="w9",  file="NBB-Informe-24_30ago.csv",    label="24–30 ago",     start="2026-08-24", end="2026-08-30", reach=dict(trad=78596)),
-    dict(id="w10", file="NBB-Informe-31ago_6sep.csv",  label="31 ago–6 sep",  start="2026-08-31", end="2026-09-06", reach=dict(trad=109335, nbb=28736)),
-    dict(id="w11", file="NBB-Informe-7_14sep.csv",     label="7–13 sep",      start="2026-09-07", end="2026-09-13", reach=dict(trad=96342,  nbb=31681)),
+    dict(id="w10", file="NBB-Informe-31ago_6sep.csv",  label="31 ago–6 sep",  start="2026-08-31", end="2026-09-06", reach=dict(trad=86923,  nbb=28736)),
+    dict(id="w11", file="NBB-Informe-7_14sep.csv",     label="7–13 sep",      start="2026-09-07", end="2026-09-13", reach=dict(trad=71683,  nbb=31681)),
     # Desde la semana 12 el export llega separado: un CSV con la pauta tradicional y otro con NBB.
     dict(id="w12", files=["NBB-Informe-14_20sep.csv", "Ads NBB/NBB SEM 3 - 14 al 20 SEP 2026.csv"],
          label="14–20 sep", start="2026-09-14", end="2026-09-20", reach=dict(trad=66424, nbb=36232)),
