@@ -52,23 +52,26 @@ WEEKS = [
          label="14–20 sep", start="2026-09-14", end="2026-09-20", reach=dict(trad=66424, nbb=36232)),
     dict(id="w13", files=["NBB-Informe-21_27sep.csv", "Ads NBB/NBB SEM 4 - 21 al 27 SEP 2026.csv"],
          label="21–27 sep", start="2026-09-21", end="2026-09-27", reach=dict(trad=67905, nbb=46811)),
+    dict(id="w14", files=["NBB-Informe-28sep_4oct.csv", "Ads NBB/NBB SEM 5 - 28 SEP al 4 OCT 2026.csv"],
+         label="28 sep–4 oct", start="2026-09-28", end="2026-10-04", reach=dict(trad=65352, nbb=45448)),
 ]
 # Alcance deduplicado acumulado (Meta Informes) al cierre de la última semana.
 #   trad: 29 jun → fin de la última semana.  nbb: 31 ago → fin de la última semana.
-ACC_REACH = dict(trad=358818, nbb=99378)
+ACC_REACH = dict(trad=412098, nbb=123284)
 # Alcance deduplicado de la pauta tradicional SOLO en la ventana común con NBB (31 ago → fin de la última semana).
 # Sirve para comparar alcance/frecuencia entre estrategias en el acumulado; opcional.
 TRAD_WINDOW_REACH = None
 # Registro histórico de acumulados anteriores (solo documental, no se renderiza):
 #   trad 29 jun–30 ago: 318722 · 29 jun–6 sep: 357415 (*) · 29 jun–13 sep: 384849 (*) · 29 jun–20 sep: 342719
-#   nbb  31 ago–13 sep: 51079 · 31 ago–20 sep: 73076
+#   trad 29 jun–27 sep: 358818
+#   nbb  31 ago–13 sep: 51079 · 31 ago–20 sep: 73076 · 31 ago–27 sep: 99378
 #   (*) Los cortes del 6 y el 13 de septiembre se tomaron sin filtrar las campañas NBB, así que corresponden a
 #       la CUENTA COMPLETA y no a la pauta tradicional sola. No son comparables con los cortes posteriores
 #       (20 sep: 342719 y 27 sep: 358818), ya tomados solo sobre las campañas «CO |».
 
 NBB_START = "w10"              # primera semana con la estrategia NBB
-PERIODS_SHOWN = ["w12", "w13"] # semanas seleccionables en el toggle (además del acumulado)
-CUR = "w13"                    # semana por defecto
+PERIODS_SHOWN = ["w13", "w14"] # semanas seleccionables en el toggle (además del acumulado)
+CUR = "w14"                    # semana por defecto
 
 # ───────────────────────── Nomenclatura ─────────────────────────
 # Campañas de la pauta tradicional → sede canónica. Todo lo que NO esté aquí y empiece por "NBB |"
@@ -118,6 +121,15 @@ def num(v, f=float):
     v = (v or "").strip()
     return f(float(v)) if v not in ("", "-") else 0
 
+# Meta renombró la columna de gasto («Importe gastado (COP)» → «Monto gastado (COP)») el 28 sep 2026.
+SPEND_COLS = ("Importe gastado (COP)", "Monto gastado (COP)")
+
+def spend_of(r, src):
+    for col in SPEND_COLS:
+        if col in r:
+            return num(r[col])
+    sys.exit(f"[{src}] No encuentro la columna de gasto; esperaba una de {SPEND_COLS}")
+
 def week_files(w):
     """Una semana puede venir en un solo CSV (ambas estrategias) o repartida en varios."""
     return w["files"] if isinstance(w.get("files"), list) else [w["file"]]
@@ -147,7 +159,7 @@ def read_week(w):
         row = dict(
             week=w["id"], campaign=camp, adset=r["Nombre del conjunto de anuncios"].strip(),
             ad=r["Nombre del anuncio"].strip(), status=r["Estado de la entrega"],
-            spend=num(r["Importe gastado (COP)"]), imp=num(r["Impresiones"], int),
+            spend=spend_of(r, w["id"]), imp=num(r["Impresiones"], int),
             reach=num(r["Alcance"], int), clicks=num(r["Clics en el enlace"], int), conv=conv,
             q=r.get("Clasificación de calidad", "-"), qctr=r.get("Clasificación del porcentaje de interacción", "-"),
             qcvr=r.get("Clasificación del porcentaje de conversiones", "-"),
